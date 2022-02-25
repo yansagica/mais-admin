@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+.login-style {
+   font-family: 'Roboto Condensed', sans-serif;
+}
+
+h1,
+label {
+   color: #8257E5;
+}
+
+.botao-login {
+   background-color: #8257E5;
+}
+
+.footer-login {
+   background-color: #8257E5;
+}
+
+input::placeholder {
+   font-size: 14px;
+}
+
+.divider:after,
+.divider:before {
+   content: "";
+   flex: 1;
+   height: 1px;
+   background: #eee;
+}
+
+.h-custom {
+   height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+   .h-custom {
+      height: 100%;
+   }
+}
