@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import{FcBullish, FcReading, FcFolder, FcInspection, FcStatistics} from 'react-icons/fc'
 
 export default function Sidebar() {
@@ -8,10 +9,11 @@ export default function Sidebar() {
             <div class="sb-sidenav-menu">
                <div class="nav">
                   {/* <div class="sb-sidenav-menu-heading">Core</div> */}
-                  <a class="nav-link" href="index.html">
-                     <div class="sb-nav-link-icon"><FcStatistics size={20}/></div>
+                  <Link className="nav-link" to="/">
+                     <div className="sb-nav-link-icon"><FcStatistics size={20}/></div>
                      Resumo Geral
-                  </a>
+                  </Link>
+                  
                   {/* <div class="sb-sidenav-menu-heading">Interface</div> */}
                   <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                      <div class="sb-nav-link-icon"><FcInspection size={20}/></div>
@@ -19,9 +21,8 @@ export default function Sidebar() {
                      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                   </a>
                   <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">Matriculados x Evasão (Geral)</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Matriculados x Evasão (Curso)</a>
+                     <nav class="sb-sidenav-menu-nested nav">                        
+                        <Link className="nav-link" to="/secevasaocurso">Matriculados x Evasão (Curso)</Link>
                         <a class="nav-link" href="layout-sidenav-light.html">Matriculados x Evasão (Turma)</a>
                         <a class="nav-link" href="layout-sidenav-light.html">Matriculados x Código de Pagamento</a>                        
                         <a class="nav-link" href="layout-sidenav-light.html">Aprovados/Reprovados</a>
