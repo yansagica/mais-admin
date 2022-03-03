@@ -3,16 +3,16 @@ import Footer from '../../components/Footer'
 import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from 'react-icons/fa';
 import { MdOutlineFreeCancellation } from 'react-icons/md';
 import { BiTransfer } from 'react-icons/bi';
-import '../SecEvasaoCurso/style.css'
+import '../SecEvasaoTurma/style.css'
 
-export default function SecEvasaoCurso() {
+export default function SecEvasaoTurma() {
 
    return (
       <>
          <div className="bg-light" id="layoutSidenav_content">
             <main>
                <div className="container-fluid px-4">
-                  <h3 className="mt-4 mb-4 fw-bold texto-roxo">Matriculados x Evasão (Curso)</h3>
+                  <h3 className="mt-4 mb-4 fw-bold texto-roxo">Matriculados x Evasão (Turma)</h3>
                   <hr />
                   <div class="container">
                      <div className='row'>
@@ -25,9 +25,9 @@ export default function SecEvasaoCurso() {
                         </div>
                         <div className='col-10'>
                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                              <option selected value="1">Fundamental</option>
-                              <option value="2">Médio</option>
-                              <option value="3">Superior</option>
+                              <option selected value="1">Selecione a turma</option>
+                              <option value="2">1AM</option>
+                              <option value="3">2AM</option>
                            </select>
                         </div>
                      </div>

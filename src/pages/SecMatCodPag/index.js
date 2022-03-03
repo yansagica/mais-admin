@@ -3,16 +3,16 @@ import Footer from '../../components/Footer'
 import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from 'react-icons/fa';
 import { MdOutlineFreeCancellation } from 'react-icons/md';
 import { BiTransfer } from 'react-icons/bi';
-import '../SecEvasaoCurso/style.css'
+import './style.css'
 
-export default function SecEvasaoCurso() {
+export default function SecMatCodPag() {
 
    return (
       <>
          <div className="bg-light" id="layoutSidenav_content">
             <main>
                <div className="container-fluid px-4">
-                  <h3 className="mt-4 mb-4 fw-bold texto-roxo">Matriculados x Evasão (Curso)</h3>
+                  <h3 className="mt-4 mb-4 fw-bold texto-roxo">Matriculados x Código de Pagamento</h3>
                   <hr />
                   <div class="container">
                      <div className='row'>
@@ -25,9 +25,10 @@ export default function SecEvasaoCurso() {
                         </div>
                         <div className='col-10'>
                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                              <option selected value="1">Fundamental</option>
-                              <option value="2">Médio</option>
-                              <option value="3">Superior</option>
+                              <option selected value="1">Selecione o código de pagamento</option>
+                              <option value="2">FUND1</option>
+                              <option value="3">FUND2</option>
+                              <option value="4">BOLSISTA</option>
                            </select>
                         </div>
                      </div>

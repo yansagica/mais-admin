@@ -23,9 +23,9 @@ export default function Sidebar() {
                   <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                      <nav class="sb-sidenav-menu-nested nav">                        
                         <Link className="nav-link" to="/secevasaocurso">Matriculados x Evasão (Curso)</Link>
-                        <a class="nav-link" href="layout-sidenav-light.html">Matriculados x Evasão (Turma)</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Matriculados x Código de Pagamento</a>                        
-                        <a class="nav-link" href="layout-sidenav-light.html">Aprovados/Reprovados</a>
+                        <Link className="nav-link" to="/secevasaoturma">Matriculados x Evasão (Turma)</Link>                        
+                        <Link className="nav-link" to="/secmatcodpag">Matriculados x Código de Pagamento</Link>                                    
+                        <Link className="nav-link" to="/secaprovreprov">Aprovados/Reprovados</Link>                 
                      </nav>
                   </div>
 
