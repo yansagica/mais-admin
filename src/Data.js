@@ -99,3 +99,25 @@ export const UserData4 = [
    // }
 ]
 
+export const UserData5 = [
+   {
+      id: 1,
+      year: "Pagamentos",
+      userGain: 8000,
+      userLost: 823,
+   },
+
+   {
+      id: 3,
+      year: "Vencidos",
+      userGain: 1447,
+      userLost: 258,
+   },   
+   // {
+   //    id: 5,
+   //    year: 2020,
+   //    userGain: 1596,
+   //    userLost: 789,
+   // }
+]
+
