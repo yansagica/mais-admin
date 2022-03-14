@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 
+body {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;   
+}
+
 .login-style {
    font-family: 'Roboto Condensed', sans-serif;
 }
@@ -13,8 +19,8 @@ label {
    background-color: #8257E5;
 }
 
-.footer-login {
-   background-color: #8257E5;
+.footer-login {   
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 input::placeholder {
@@ -30,7 +36,7 @@ input::placeholder {
 }
 
 .h-custom {
-   height: calc(100% - 73px);
+   height: calc(100% - 20%);
 }
 
 @media (max-width: 450px) {

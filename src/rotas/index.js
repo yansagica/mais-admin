@@ -13,13 +13,15 @@ import FinFatDia from "../pages/FinFatDia";
 import FinInaTurma from "../pages/FinInaTurma";
 import FinResCaixaDia from "../pages/FinResCaixaDia";
 import FinResCaixaDiaForpag from "../pages/FinResCaixaDiaForpag";
+import { Login } from "../pages/Login";
 
 
 const Rotas = () => {
    return (
 
       <Routes>
-         <Route path="/" element={<Principal />} />
+         <Route path="/" element={<Login />} />
+         <Route path="/home" element={<Principal />} />
          <Route path="/secevasaocurso" element={<SecEvasaoCurso />} />
          <Route path="/secevasaoturma" element={<SecEvasaoTurma />} />
          <Route path="/secmatcodpag" element={<SecMatCodPag />} />
