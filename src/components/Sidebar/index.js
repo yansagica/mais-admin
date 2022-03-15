@@ -9,7 +9,7 @@ export default function Sidebar() {
             <div class="sb-sidenav-menu">
                <div class="nav">
                   {/* <div class="sb-sidenav-menu-heading">Core</div> */}
-                  <Link className="nav-link" to="/">
+                  <Link className="nav-link" to="/home">
                      <div className="sb-nav-link-icon"><FcStatistics size={20} /></div>
                      Resumo Geral
                   </Link>

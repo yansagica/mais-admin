@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../components/Footer'
 import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from 'react-icons/fa';
 import { MdOutlineFreeCancellation } from 'react-icons/md';
-import {BsCurrencyDollar, BsHandThumbsDownFill} from 'react-icons/bs';
-import {HiOutlineTrendingDown} from 'react-icons/hi';
 import { BiTransfer } from 'react-icons/bi';
 import Pizza from '../../components/Graficos/Pizza';
-import { UserData, UserData2, UserData3, UserData4 } from '../../Data';
-import '../Principal/style.css'
+import { UserData, UserData2, UserData3 } from '../../Data';
+import '../Principal/style.css';
+
+import axios from 'axios';
+
+var id = 1;
 
 export default function Principal() {
 
@@ -51,18 +53,47 @@ export default function Principal() {
       }]
    });
 
-   // const [userData4, setUserData4] = useState({
-   //    labels: UserData4.map((data) => data.year),
-   //    datasets: [{
-   //       label: "Users Gain",
-   //       data: UserData4.map((data) => data.userGain),
-   //       backgroundColor: [
-   //          "#20B2AA",
-   //          "#FF7F50",
-   //       ],
+   const [qtdMatriculados, setQtdMatriculados] = useState([]);
+   const [qtdFichados, setQtdFichados] = useState([]);
+   const [qtdEvasao, setQtdEvasao] = useState([]);
+   const [qtdTfa, setQtdTfa] = useState([]);
 
-   //    }]
-   // });
+   useEffect(() => {
+      getMatriculados();
+      getFichados();
+      getEvasao();
+      getTfa();
+   }, [])
+
+   const getMatriculados = async () => {
+      const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
+      const allData = response.data;
+
+      console.log(response.data);
+
+      setQtdMatriculados(allData.qtdmat);
+   }
+
+   const getFichados = async () => {
+      const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
+      const allData = response.data;
+
+      setQtdFichados(allData.qtdfic);
+   }
+
+   const getEvasao = async () => {
+      const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
+      const allData = response.data;
+
+      setQtdEvasao(allData.qtdcats);
+   }
+
+   const getTfa = async () => {
+      const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
+      const allData = response.data;
+
+      setQtdTfa(allData.qtdtfa);
+   }
 
    return (
       <>
@@ -80,7 +111,7 @@ export default function Principal() {
                                  <h6 class="m-b-20 fw-bold text-center">Matriculados</h6>
                                  <div className="d-flex align-items-center justify-content-around">
                                     <FaUsers size="55px" />
-                                    <span className="h1 fw-bold">351</span>
+                                    <span className="h1 fw-bold">{qtdMatriculados}</span>
                                  </div>
                               </div>
                            </div>
@@ -92,7 +123,7 @@ export default function Principal() {
                                  <h6 class="m-b-20 fw-bold text-center">Fichados (Registrados)</h6>
                                  <div className="d-flex align-items-center justify-content-around">
                                     <FaUserFriends color="" size="55px" />
-                                    <span className="h1 fw-bold">20</span>
+                                    <span className="h1 fw-bold">{qtdFichados}</span>
                                  </div>
                               </div>
                            </div>
@@ -104,7 +135,7 @@ export default function Principal() {
                                  <h6 class="m-b-20 fw-bold text-center">Evasão</h6>
                                  <div className="d-flex align-items-center justify-content-around">
                                     <MdOutlineFreeCancellation color="" size="55px" />
-                                    <span className="h1 fw-bold">10</span>
+                                    <span className="h1 fw-bold">{qtdEvasao}</span>
                                  </div>
                               </div>
                            </div>
@@ -116,7 +147,7 @@ export default function Principal() {
                                  <h6 class="m-b-20 fw-bold text-center">TFA (Tranferência Final de Ano)</h6>
                                  <div className="d-flex align-items-center justify-content-around">
                                     <BiTransfer color="" size="55px" />
-                                    <span className="h1 fw-bold">2</span>
+                                    <span className="h1 fw-bold">{qtdTfa}</span>
                                  </div>
                               </div>
                            </div>
@@ -155,7 +186,7 @@ export default function Principal() {
                         </div>
 
                         <div class="col-md-4 col-xl-3">
-                        <h5 className='fw-bold'>Valores</h5>
+                           <h5 className='fw-bold'>Valores</h5>
                            <div class="card bg-c-green order-card">
                               <div class="card-block">
                                  <h6 class="m-b-20 fw-bold text-center">Recebidos</h6>
@@ -164,7 +195,7 @@ export default function Principal() {
                                     <span className="h1 fw-bold">R$ 1.350.000</span>
                                  </div>
                               </div>
-                           </div>                
+                           </div>
 
                            <div class="card bg-c-red order-card">
                               <div class="card-block">
@@ -176,7 +207,7 @@ export default function Principal() {
                               </div>
                            </div>
                         </div>
-                        
+
                      </div>
                   </div>
                </div>

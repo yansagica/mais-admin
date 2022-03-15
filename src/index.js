@@ -9,7 +9,7 @@ import { Login } from './pages/Login';
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <Login />
+      <App />
     </React.StrictMode>
   </BrowserRouter>
   ,
