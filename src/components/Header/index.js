@@ -1,32 +1,38 @@
-import React from 'react'
-import './style.css';
-import {GiExitDoor} from 'react-icons/gi';
+import React from "react";
+import "./style.css";
+import { GiExitDoor } from "react-icons/gi";
 
 export default function Header() {
-   return (
-      <>
-         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-roxo">
+  return (
+    <>
+      <nav className="sb-topnav navbar navbar-expand navbar-dark bg-roxo">
+        <a className="navbar-brand ps-3" href="index.html">
+          MaisAdmin
+        </a>
 
-            <a class="navbar-brand ps-3" href="index.html">MaisAdmin</a>
+        <button
+          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+          id="sidebarToggle"
+          href="#!"
+        >
+          <i className="fas fa-bars"></i>
+        </button>
 
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-               <div class="input-group">
-                  {/* <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-         <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button> */}
-               </div>
-            </form>
-            {/* 
+        <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+          {/* <div className="input-group">
+            <p className="navbar-brand ps-3 m-5">Período: 2022/1</p>
+          </div> */}
+        </form>
+        {/* 
             <div className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                <a className="navbar-brand ps-3">
                   EDUARDO CAMPOS
                </a>
             </div> */}
-            <div className='px-3'>
-               <GiExitDoor size={30} color="#fff"/>
-            </div>
-         </nav>
-      </>
-   )
+        <div className="px-3">
+          <GiExitDoor size={30} color="#fff" />
+        </div>
+      </nav>
+    </>
+  );
 }
