@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
-import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from "react-icons/fa";
+import { FaUsers, FaUserFriends } from "react-icons/fa";
 import { MdOutlineFreeCancellation } from "react-icons/md";
 import { BiTransfer } from "react-icons/bi";
 import "../SecEvasaoCurso/style.css";
 import axios from "axios";
 
-var id = 1;
+var cnpj = "83369678000173";
 
 export default function SecEvasaoCurso() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -15,44 +15,101 @@ export default function SecEvasaoCurso() {
   const [qtdTfa, setQtdTfa] = useState([]);
   const [registros, setRegistros] = useState([]);
   const [anoPeriodo, setAnoPeriodo] = useState([]);
+  const [seqano, setSeqano] = useState([]);
+  const [curso, setCurso] = useState([]);
 
   useEffect(() => {
-    getMatriculados();
-    getFichados();
-    getEvasao();
-    getTfa();
+    getTotalRegistros();
   }, []);
 
-  useEffect(async () => {
-    const response = await axios.get(`http://localhost:5000/secretaria`);
-    setRegistros(response.data);
-  }, []);
+  useEffect(() => {
+    const getAnoPeriodo = async () => {
+      if (anoPeriodo != 0) {
+        const response = await axios.get(
+          `http://localhost:5000/secretaria/${cnpj}`
+        );
+        const dados = response.data;
+        const filterAnoPeriodo = dados
+          .map((item) => item)
+          .filter((item) => `${item.ano}/${item.seqano}` === anoPeriodo);
 
-  const getMatriculados = async () => {
-    const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
+        const totalMatric = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdmat,
+          0
+        );
+        const totalFic = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdfic,
+          0
+        );
+        const totalEva = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdcats,
+          0
+        );
+        const totalTfa = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdtfa,
+          0
+        );
+
+        setQtdMatriculados(totalMatric);
+        setQtdFichados(totalFic);
+        setQtdEvasao(totalEva);
+        setQtdTfa(totalTfa);
+      } else if (curso != 0) {
+        const response = await axios.get(
+          `http://localhost:5000/secretaria/${cnpj}`
+        );
+        const dados = response.data;
+        const filterAnoPeriodo = dados
+          .map((item) => item)
+          .filter(
+            (item) =>
+              (`${item.ano}/${item.seqano}` === anoPeriodo) |
+              (item.curso === curso)
+          );
+
+        const totalMatric = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdmat,
+          0
+        );
+        const totalFic = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdfic,
+          0
+        );
+        const totalEva = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdcats,
+          0
+        );
+        const totalTfa = filterAnoPeriodo.reduce(
+          (total, item) => total + item.qtdtfa,
+          0
+        );
+        setQtdMatriculados(totalMatric);
+        setQtdFichados(totalFic);
+        setQtdEvasao(totalEva);
+        setQtdTfa(totalTfa);
+      } else {
+        getTotalRegistros();
+      }
+    };
+    getAnoPeriodo();
+  }, [anoPeriodo, curso]);
+
+  const getTotalRegistros = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/secretaria/${cnpj}`
+    );
     const allData = response.data;
-    setQtdMatriculados(allData.qtdmat);
-  };
+    setRegistros(allData);
 
-  const getFichados = async () => {
-    const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
-    const allData = response.data;
+    const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
+    const totalFic = allData.reduce((total, item) => total + item.qtdfic, 0);
+    const totalEva = allData.reduce((total, item) => total + item.qtdcats, 0);
+    const totalTfa = allData.reduce((total, item) => total + item.qtdtfa, 0);
 
-    setQtdFichados(allData.qtdfic);
-  };
-
-  const getEvasao = async () => {
-    const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
-    const allData = response.data;
-
-    setQtdEvasao(allData.qtdcats);
-  };
-
-  const getTfa = async () => {
-    const response = await axios.get(`http://localhost:5000/secretaria/${id}`);
-    const allData = response.data;
-
-    setQtdTfa(allData.qtdtfa);
+    setQtdMatriculados(totalMatric);
+    setQtdFichados(totalFic);
+    setQtdEvasao(totalEva);
+    setQtdTfa(totalTfa);
   };
 
   return (
@@ -68,14 +125,14 @@ export default function SecEvasaoCurso() {
               <div className="row">
                 <div className="col-3">
                   <select
-                    value={anoPeriodo}
-                    onChange={(e) => setAnoPeriodo(e.target.value)}
                     className="form-select form-select-lg mb-3"
                     aria-label="form-select-lg example"
+                    value={anoPeriodo}
+                    onChange={(e) => setAnoPeriodo(e.target.value)}
                   >
-                    <option value="0">Selecione o ano período</option>
+                    <option value="0">SELECIONE ANO PERÍODO</option>
                     {registros.map((registro) => (
-                      <option key={registro.id} value={registro.id}>
+                      <option key={registro.id}>
                         {registro.ano}/{registro.seqano}
                       </option>
                     ))}
@@ -85,10 +142,12 @@ export default function SecEvasaoCurso() {
                   <select
                     className="form-select form-select-lg mb-3"
                     aria-label="form-select-lg example"
+                    value={curso}
+                    onChange={(e) => setCurso(e.target.value)}
                   >
-                    <option value="0">Selecione o curso</option>
+                    <option value="0">SELECIONE O CURSO</option>
                     {registros.map((registro) => (
-                      <option key={registro.id} value={registro.id}>
+                      <option key={registro.id} value={registro.curso}>
                         {registro.curso}
                       </option>
                     ))}
