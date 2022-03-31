@@ -14,98 +14,63 @@ export default function SecEvasaoCurso() {
   const [qtdEvasao, setQtdEvasao] = useState([]);
   const [qtdTfa, setQtdTfa] = useState([]);
   const [registros, setRegistros] = useState([]);
-  const [anoPeriodo, setAnoPeriodo] = useState([]);
-  const [seqano, setSeqano] = useState([]);
-  const [curso, setCurso] = useState([]);
+  const [anoPeriodo, setAnoPeriodo] = useState("");
+  const [periodos, setPeriodos] = useState([]);
+  const [seqano, setSeqano] = useState("");
+  const [curso, setCurso] = useState("");
+  const [cursos, setCursos] = useState([]);
+
+  const getTodosPeriodos = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/secretaria/periodos/${cnpj}`
+    );
+    setPeriodos(response.data);
+  };
+
+  const getCursos = async () => {
+    const periodo = anoPeriodo.split("/");
+    const response = await axios.get(
+      `http://localhost:5000/secretaria/cursos/${cnpj}/${periodo[0]}/${periodo[1]} `
+    );
+    setCursos(response.data);
+  };
 
   useEffect(() => {
+    getTodosPeriodos();
     getTotalRegistros();
   }, []);
 
   useEffect(() => {
-    const getAnoPeriodo = async () => {
-      if (anoPeriodo != 0) {
-        const response = await axios.get(
-          `http://localhost:5000/secretaria/${cnpj}`
-        );
-        const dados = response.data;
-        const filterAnoPeriodo = dados
-          .map((item) => item)
-          .filter((item) => `${item.ano}/${item.seqano}` === anoPeriodo);
+    if (anoPeriodo.length > 0) {
+      getCursos();
+    }
+    getTotalRegistros();
+  }, [anoPeriodo]);
 
-        const totalMatric = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdmat,
-          0
-        );
-        const totalFic = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdfic,
-          0
-        );
-        const totalEva = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdcats,
-          0
-        );
-        const totalTfa = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdtfa,
-          0
-        );
-
-        setQtdMatriculados(totalMatric);
-        setQtdFichados(totalFic);
-        setQtdEvasao(totalEva);
-        setQtdTfa(totalTfa);
-      } else if (curso != 0) {
-        const response = await axios.get(
-          `http://localhost:5000/secretaria/${cnpj}`
-        );
-        const dados = response.data;
-        const filterAnoPeriodo = dados
-          .map((item) => item)
-          .filter(
-            (item) =>
-              (`${item.ano}/${item.seqano}` === anoPeriodo) |
-              (item.curso === curso)
-          );
-
-        const totalMatric = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdmat,
-          0
-        );
-        const totalFic = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdfic,
-          0
-        );
-        const totalEva = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdcats,
-          0
-        );
-        const totalTfa = filterAnoPeriodo.reduce(
-          (total, item) => total + item.qtdtfa,
-          0
-        );
-        setQtdMatriculados(totalMatric);
-        setQtdFichados(totalFic);
-        setQtdEvasao(totalEva);
-        setQtdTfa(totalTfa);
-      } else {
-        getTotalRegistros();
-      }
-    };
-    getAnoPeriodo();
-  }, [anoPeriodo, curso]);
+  useEffect(() => {
+    if (curso.length > 0) {
+      getTotalRegistros();
+    }
+  }, [curso]);
 
   const getTotalRegistros = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/${cnpj}`
-    );
-    const allData = response.data;
-    setRegistros(allData);
+    let url = `http://localhost:5000/secretaria/${cnpj}`;
+    const periodo = anoPeriodo.split("/");
 
+    if (anoPeriodo.length > 0)
+      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
+
+    if (curso.length > 0)
+      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}/${curso}`;
+
+    const response = await axios.get(url);
+    const allData = response.data;
+    console.log(allData);
+    setRegistros(allData);
     const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
     const totalFic = allData.reduce((total, item) => total + item.qtdfic, 0);
     const totalEva = allData.reduce((total, item) => total + item.qtdcats, 0);
     const totalTfa = allData.reduce((total, item) => total + item.qtdtfa, 0);
-
     setQtdMatriculados(totalMatric);
     setQtdFichados(totalFic);
     setQtdEvasao(totalEva);
@@ -130,10 +95,10 @@ export default function SecEvasaoCurso() {
                     value={anoPeriodo}
                     onChange={(e) => setAnoPeriodo(e.target.value)}
                   >
-                    <option value="0">SELECIONE ANO PERÍODO</option>
-                    {registros.map((registro) => (
-                      <option key={registro.id}>
-                        {registro.ano}/{registro.seqano}
+                    <option value="">...</option>
+                    {periodos.map((p, index) => (
+                      <option key={index} value={p.ano + "/" + p.seqano}>
+                        {p.ano}/{p.seqano}
                       </option>
                     ))}
                   </select>
@@ -145,15 +110,16 @@ export default function SecEvasaoCurso() {
                     value={curso}
                     onChange={(e) => setCurso(e.target.value)}
                   >
-                    <option value="0">SELECIONE O CURSO</option>
-                    {registros.map((registro) => (
-                      <option key={registro.id} value={registro.curso}>
-                        {registro.curso}
+                    <option value="">...</option>
+                    {cursos.map((c, index) => (
+                      <option key={index} value={c.curso}>
+                        {c.curso}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
+
               <div className="row">
                 <div className="col-md-4 col-xl-3">
                   <div className="card bg-c-green order-card">
@@ -199,7 +165,7 @@ export default function SecEvasaoCurso() {
                   <div className="card bg-c-orange order-card">
                     <div className="card-block">
                       <h6 className="m-b-20 fw-bold text-center">
-                        TFA (Tranferência Final de Ano)
+                        Tranferência Final de Ano
                       </h6>
                       <div className="d-flex align-items-center justify-content-around">
                         <BiTransfer color="" size="55px" />
