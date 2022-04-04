@@ -30,7 +30,7 @@ export default function SecEvasaoCurso() {
   const getCursos = async () => {
     const periodo = anoPeriodo.split("/");
     const response = await axios.get(
-      `http://localhost:5000/secretaria/cursos/${cnpj}/${periodo[0]}/${periodo[1]} `
+      `http://localhost:5000/secretaria/cursos/${cnpj}/${periodo[0]}/${periodo[1]}`
     );
     setCursos(response.data);
   };
