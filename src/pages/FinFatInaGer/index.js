@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
-import { UserData5 } from "../../Data";
 import "../FinFatInaGer/style.css";
 import axios from "axios";
 
