@@ -25,6 +25,8 @@ export default function SecAprovReprov() {
   const [seqano, setSeqano] = useState("");
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
+  const [aprovados, setAprovados] = useState(null);
+  const [reprovados, setReprovados] = useState(null);
 
   const getTodosPeriodos = async () => {
     const response = await axios.get(
@@ -57,6 +59,7 @@ export default function SecAprovReprov() {
     if (turma.length > 0) {
       getTotalRegistros();
     }
+    getTotalRegistros();
   }, [turma]);
 
   const getTotalRegistros = async () => {
@@ -71,55 +74,21 @@ export default function SecAprovReprov() {
 
     const response = await axios.get(url);
     const allData = response.data;
-    console.log(allData);
-    setRegistros(allData);
 
-    const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
-    const totalFic = allData.reduce((total, item) => total + item.qtdfic, 0);
-    const totalEva = allData.reduce((total, item) => total + item.qtdcats, 0);
-    const totalTfa = allData.reduce((total, item) => total + item.qtdtfa, 0);
+    const totalAprov = allData.reduce((total, item) => total + item.qtdapr, 0);
+    const totalReprov = allData.reduce((total, item) => total + item.qtdrep, 0);
 
-    setQtdMatriculados(totalMatric);
-    setQtdFichados(totalFic);
-    setQtdEvasao(totalEva);
-    setQtdTfa(totalTfa);
+    setAprovados({
+      labels: ["Aprovados", "Reprovados"],
+      datasets: [
+        {
+          label: "userGain",
+          data: [totalAprov, totalReprov],
+          backgroundColor: ["#007fff", "#FF0000"],
+        },
+      ],
+    });
   };
-  //   setUserData({
-  //     labels: ["Recebidos", "Vencidos"],
-  //     datasets: [
-  //       {
-  //         label: "userGain",
-  //         data: [
-  //           totalRec01 +
-  //             totalRec02 +
-  //             totalRec03 +
-  //             totalRec04 +
-  //             totalRec05 +
-  //             totalRec06 +
-  //             totalRec07 +
-  //             totalRec08 +
-  //             totalRec09 +
-  //             totalRec10 +
-  //             totalRec11 +
-  //             totalRec12,
-
-  //           totalDeb01 +
-  //             totalDeb02 +
-  //             totalDeb03 +
-  //             totalDeb04 +
-  //             totalDeb05 +
-  //             totalDeb06 +
-  //             totalDeb07 +
-  //             totalDeb08 +
-  //             totalDeb09 +
-  //             totalDeb10 +
-  //             totalDeb11 +
-  //             totalDeb12,
-  //         ],
-  //         backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
-  //       },
-  //     ],
-  //   });
 
   return (
     <>
@@ -164,14 +133,13 @@ export default function SecAprovReprov() {
                 </div>
               </div>
               <div className="row">
-                {/* <div className="col-md-4 col-xl-3">
-                  <h5 className="fw-bold">Mensalidades</h5>
-                  <div className="card bg-c-light order-card">
+                <div className="d-flex justify-content-center align-items-center col-md-4 col-lg-12 col-xl-12">
+                  <div className="card order-card col-xl-5">
                     <div className="card-block">
-                      {userData && <Pizza chartData={userData} />}
+                      {aprovados && <Pizza chartData={aprovados} />}
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
