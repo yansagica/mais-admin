@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
-import { UserData5 } from "../../Data";
 import "../FinFatDespMes/style.css";
 import axios from "axios";
 
@@ -48,11 +47,11 @@ export default function FinFatDespMes() {
     let url = `http://localhost:5000/secretaria/${cnpj}`;
     const periodo = anoPeriodo.split("/");
 
-    if (anoPeriodo.length > 0)
+    if ((anoPeriodo.length > 0) | (mes.length > 0))
       url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
-    if (mes.length > 0)
-      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
+    // if (mes.length > 0)
+    //   url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
     const response = await axios.get(url);
     const allData = response.data;
@@ -62,61 +61,181 @@ export default function FinFatDespMes() {
       const totalApa01 = allData.reduce((total, item) => total + item.apa01, 0);
       setFaturaCard(totalFat01);
       setApagarCard(totalApa01);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat01, totalApa01],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat02") {
       const totalFat02 = allData.reduce((total, item) => total + item.fat02, 0);
       const totalApa02 = allData.reduce((total, item) => total + item.apa02, 0);
       setFaturaCard(totalFat02);
       setApagarCard(totalApa02);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat02, totalApa02],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat03") {
       const totalFat03 = allData.reduce((total, item) => total + item.fat03, 0);
       const totalApa03 = allData.reduce((total, item) => total + item.apa03, 0);
       setFaturaCard(totalFat03);
       setApagarCard(totalApa03);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat03, totalApa03],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat04") {
       const totalFat04 = allData.reduce((total, item) => total + item.fat04, 0);
       const totalApa04 = allData.reduce((total, item) => total + item.apa04, 0);
       setFaturaCard(totalFat04);
       setApagarCard(totalApa04);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat04, totalApa04],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat05") {
       const totalFat05 = allData.reduce((total, item) => total + item.fat05, 0);
       const totalApa05 = allData.reduce((total, item) => total + item.apa05, 0);
       setFaturaCard(totalFat05);
       setApagarCard(totalApa05);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat05, totalApa05],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat06") {
       const totalFat06 = allData.reduce((total, item) => total + item.fat06, 0);
       const totalApa06 = allData.reduce((total, item) => total + item.apa06, 0);
       setFaturaCard(totalFat06);
       setApagarCard(totalApa06);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat06, totalApa06],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat07") {
       const totalFat07 = allData.reduce((total, item) => total + item.fat07, 0);
       const totalApa07 = allData.reduce((total, item) => total + item.apa07, 0);
       setFaturaCard(totalFat07);
       setApagarCard(totalApa07);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat07, totalApa07],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat08") {
       const totalFat08 = allData.reduce((total, item) => total + item.fat08, 0);
       const totalApa08 = allData.reduce((total, item) => total + item.apa08, 0);
       setFaturaCard(totalFat08);
       setApagarCard(totalApa08);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat08, totalApa08],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat09") {
       const totalFat09 = allData.reduce((total, item) => total + item.fat09, 0);
       const totalApa09 = allData.reduce((total, item) => total + item.apa09, 0);
       setFaturaCard(totalFat09);
       setApagarCard(totalApa09);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat09, totalApa09],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat10") {
       const totalFat10 = allData.reduce((total, item) => total + item.fat10, 0);
       const totalApa10 = allData.reduce((total, item) => total + item.apa10, 0);
       setFaturaCard(totalFat10);
       setApagarCard(totalApa10);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat10, totalApa10],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat11") {
       const totalFat11 = allData.reduce((total, item) => total + item.fat11, 0);
       const totalApa11 = allData.reduce((total, item) => total + item.apa11, 0);
       setFaturaCard(totalFat11);
       setApagarCard(totalApa11);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat11, totalApa11],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else if (mes === "fat12") {
       const totalFat12 = allData.reduce((total, item) => total + item.fat12, 0);
       const totalApa12 = allData.reduce((total, item) => total + item.apa12, 0);
       setFaturaCard(totalFat12);
       setApagarCard(totalApa12);
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [totalFat12, totalApa12],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     } else {
       const totalFat01 = allData.reduce((total, item) => total + item.fat01, 0);
       const totalFat02 = allData.reduce((total, item) => total + item.fat02, 0);
@@ -173,104 +292,43 @@ export default function FinFatDespMes() {
           totalApa11 +
           totalApa12
       );
+      setFaturamento({
+        labels: ["Faturamento", "Despesas"],
+        datasets: [
+          {
+            label: "userGain",
+            data: [
+              totalFat01 +
+                totalFat02 +
+                totalFat03 +
+                totalFat04 +
+                totalFat05 +
+                totalFat06 +
+                totalFat07 +
+                totalFat08 +
+                totalFat09 +
+                totalFat10 +
+                totalFat11 +
+                totalFat12,
+
+              totalApa01 +
+                totalApa02 +
+                totalApa03 +
+                totalApa04 +
+                totalApa05 +
+                totalApa06 +
+                totalApa07 +
+                totalApa08 +
+                totalApa09 +
+                totalApa10 +
+                totalApa11 +
+                totalApa12,
+            ],
+            backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          },
+        ],
+      });
     }
-
-    //  // FATURAMENTO
-
-    //  const totalFat01 = allData.reduce((total, item) => total + item.fat01, 0);
-    //  const totalFat02 = allData.reduce((total, item) => total + item.fat02, 0);
-    //  const totalFat03 = allData.reduce((total, item) => total + item.fat03, 0);
-    //  const totalFat04 = allData.reduce((total, item) => total + item.fat04, 0);
-    //  const totalFat05 = allData.reduce((total, item) => total + item.fat05, 0);
-    //  const totalFat06 = allData.reduce((total, item) => total + item.fat06, 0);
-    //  const totalFat07 = allData.reduce((total, item) => total + item.fat07, 0);
-    //  const totalFat08 = allData.reduce((total, item) => total + item.fat08, 0);
-    //  const totalFat09 = allData.reduce((total, item) => total + item.fat09, 0);
-    //  const totalFat10 = allData.reduce((total, item) => total + item.fat10, 0);
-    //  const totalFat11 = allData.reduce((total, item) => total + item.fat11, 0);
-    //  const totalFat12 = allData.reduce((total, item) => total + item.fat12, 0);
-
-    //  // VENCIDOS
-
-    //  const totalDeb01 = allData.reduce((total, item) => total + item.deb01, 0);
-    //  const totalDeb02 = allData.reduce((total, item) => total + item.deb02, 0);
-    //  const totalDeb03 = allData.reduce((total, item) => total + item.deb03, 0);
-    //  const totalDeb04 = allData.reduce((total, item) => total + item.deb04, 0);
-    //  const totalDeb05 = allData.reduce((total, item) => total + item.deb05, 0);
-    //  const totalDeb06 = allData.reduce((total, item) => total + item.deb06, 0);
-    //  const totalDeb07 = allData.reduce((total, item) => total + item.deb07, 0);
-    //  const totalDeb08 = allData.reduce((total, item) => total + item.deb08, 0);
-    //  const totalDeb09 = allData.reduce((total, item) => total + item.deb09, 0);
-    //  const totalDeb10 = allData.reduce((total, item) => total + item.deb10, 0);
-    //  const totalDeb11 = allData.reduce((total, item) => total + item.deb11, 0);
-    //  const totalDeb12 = allData.reduce((total, item) => total + item.deb12, 0);
-
-    //  setFaturamento({
-    //    labels: ["Faturamento", "Inadimplência"],
-    //    datasets: [
-    //      {
-    //        label: "userGain",
-    //        data: [
-    //          totalFat01 +
-    //            totalFat02 +
-    //            totalFat03 +
-    //            totalFat04 +
-    //            totalFat05 +
-    //            totalFat06 +
-    //            totalFat07 +
-    //            totalFat08 +
-    //            totalFat09 +
-    //            totalFat10 +
-    //            totalFat11 +
-    //            totalFat12,
-
-    //          totalDeb01 +
-    //            totalDeb02 +
-    //            totalDeb03 +
-    //            totalDeb04 +
-    //            totalDeb05 +
-    //            totalDeb06 +
-    //            totalDeb07 +
-    //            totalDeb08 +
-    //            totalDeb09 +
-    //            totalDeb10 +
-    //            totalDeb11 +
-    //            totalDeb12,
-    //        ],
-    //        backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
-    //      },
-    //    ],
-    //  });
-
-    //  setFaturaCard(
-    //    totalFat01 +
-    //      totalFat02 +
-    //      totalFat03 +
-    //      totalFat04 +
-    //      totalFat05 +
-    //      totalFat06 +
-    //      totalFat07 +
-    //      totalFat08 +
-    //      totalFat09 +
-    //      totalFat10 +
-    //      totalFat11 +
-    //      totalFat12
-    //  );
-
-    //  setInadim(
-    //    totalDeb01 +
-    //      totalDeb02 +
-    //      totalDeb03 +
-    //      totalDeb04 +
-    //      totalDeb05 +
-    //      totalDeb06 +
-    //      totalDeb07 +
-    //      totalDeb08 +
-    //      totalDeb09 +
-    //      totalDeb10 +
-    //      totalDeb11 +
-    //      totalDeb12
-    //  );
   };
 
   return (
@@ -324,10 +382,9 @@ export default function FinFatDespMes() {
               </div>
               <div className="row">
                 <div className="col-md-4 col-xl-5">
-                  <h5 className="fw-bold">Mensalidades</h5>
                   <div className="card bg-c-light order-card">
                     <div className="card-block">
-                      {/* <Pizza chartData={userData} /> */}
+                      {faturamento && <Pizza chartData={faturamento} />}
                     </div>
                   </div>
                 </div>
