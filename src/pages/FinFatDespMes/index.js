@@ -10,11 +10,9 @@ export default function FinFatDespMes() {
   const [faturamento, setFaturamento] = useState(null);
   const [faturaCard, setFaturaCard] = useState(0.0);
   const [apagarCard, setApagarCard] = useState(0.0);
-  const [inadim, setInadim] = useState(0.0);
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
   const [mes, setMes] = useState("");
-  const [turmas, setTurmas] = useState([]);
 
   useEffect(() => {
     getTodosPeriodos();
@@ -31,7 +29,6 @@ export default function FinFatDespMes() {
   useEffect(() => {
     if (mes.length > 0) {
       getFaturaDespesaPagaMes();
-      console.log(mes);
     }
     getFaturaDespesaPagaMes();
   }, [mes]);
@@ -49,9 +46,6 @@ export default function FinFatDespMes() {
 
     if ((anoPeriodo.length > 0) | (mes.length > 0))
       url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
-
-    // if (mes.length > 0)
-    //   url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
     const response = await axios.get(url);
     const allData = response.data;
@@ -408,9 +402,7 @@ export default function FinFatDespMes() {
                   </div>
                   <div className="card bg-c-red order-card altura-card">
                     <div className="card-block">
-                      <h5 className="m-b-20 fw-bold text-center">
-                        Inadimplência
-                      </h5>
+                      <h5 className="m-b-20 fw-bold text-center">Despesas</h5>
                       <div className="d-flex align-items-center justify-content-around">
                         {/* <HiOutlineTrendingDown size="55px" /> */}
                         <span className="h1 fw-bold">

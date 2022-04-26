@@ -214,7 +214,7 @@ export default function FinFatInaCur() {
                   <h5 className="fw-bold">Valores</h5>
                   <div class="card bg-c-green order-card altura-card">
                     <div class="card-block">
-                      <h5 class="m-b-20 fw-bold text-center">Recebidos</h5>
+                      <h5 class="m-b-20 fw-bold text-center">Faturamento</h5>
                       <div className="d-flex align-items-center justify-content-around">
                         {/* <BsCurrencyDollar size="55px" /> */}
                         <span className="h1 fw-bold">

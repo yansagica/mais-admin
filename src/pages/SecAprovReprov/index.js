@@ -15,11 +15,6 @@ import axios from "axios";
 var cnpj = "83369678000173";
 
 export default function SecAprovReprov() {
-  const [qtdMatriculados, setQtdMatriculados] = useState([]);
-  const [qtdFichados, setQtdFichados] = useState([]);
-  const [qtdEvasao, setQtdEvasao] = useState([]);
-  const [qtdTfa, setQtdTfa] = useState([]);
-  const [registros, setRegistros] = useState([]);
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
   const [seqano, setSeqano] = useState("");
@@ -27,6 +22,8 @@ export default function SecAprovReprov() {
   const [turmas, setTurmas] = useState([]);
   const [aprovados, setAprovados] = useState(null);
   const [reprovados, setReprovados] = useState(null);
+  const [aprovadosCard, setAprovadosCard] = useState(0);
+  const [reprovadosCard, setReprovadosCard] = useState(0);
 
   const getTodosPeriodos = async () => {
     const response = await axios.get(
@@ -78,16 +75,21 @@ export default function SecAprovReprov() {
     const totalAprov = allData.reduce((total, item) => total + item.qtdapr, 0);
     const totalReprov = allData.reduce((total, item) => total + item.qtdrep, 0);
 
+    console.log(totalAprov);
+
     setAprovados({
       labels: ["Aprovados", "Reprovados"],
       datasets: [
         {
           label: "userGain",
           data: [totalAprov, totalReprov],
-          backgroundColor: ["#007fff", "#FF0000"],
+          backgroundColor: ["#0000ff", "#FF0000"],
         },
       ],
     });
+
+    setAprovadosCard(totalAprov);
+    setReprovadosCard(totalReprov);
   };
 
   return (
@@ -133,10 +135,36 @@ export default function SecAprovReprov() {
                 </div>
               </div>
               <div className="row">
-                <div className="d-flex justify-content-center align-items-center col-md-4 col-lg-12 col-xl-12">
-                  <div className="card order-card col-xl-5">
-                    <div className="card-block">
+                <div class="col-md-4 col-xl-5">
+                  <div class="card bg-c-light order-card">
+                    <div class="card-block">
                       {aprovados && <Pizza chartData={aprovados} />}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xl-7">
+                  <div
+                    class="card order-card altura-card"
+                    style={{ backgroundColor: "#0000ff" }}
+                  >
+                    <div class="card-block">
+                      <h5 class="m-b-20 fw-bold text-center">Aprovados</h5>
+                      <div className="d-flex align-items-center justify-content-around">
+                        {/* <BsCurrencyDollar size="55px" /> */}
+                        <span className="h1 fw-bold">{aprovadosCard}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="card order-card altura-card"
+                    style={{ backgroundColor: "#FF0000" }}
+                  >
+                    <div class="card-block">
+                      <h5 class="m-b-20 fw-bold text-center">Reprovados</h5>
+                      <div className="d-flex align-items-center justify-content-around">
+                        {/* <HiOutlineTrendingDown size="55px" /> */}
+                        <span className="h1 fw-bold">{reprovadosCard}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

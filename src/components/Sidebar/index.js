@@ -100,11 +100,11 @@ export default function Sidebar() {
                   Inadimplência por Turma
                 </Link>
                 <Link className="nav-link" to="/finrescaixadia">
-                  Resumo Caixa por dia x Últimos 30 dias
+                  Resumo Caixa por Mês/Dia
                 </Link>
-                <Link className="nav-link" to="/finrescaixadiaforpag">
+                {/* <Link className="nav-link" to="/finrescaixadiaforpag">
                   Resumo Caixa por dia x Forma de Pagamento (Últimos 30 dias)
-                </Link>
+                </Link> */}
 
                 <a className="nav-link" href="layout-sidenav-light.html"></a>
                 <a className="nav-link" href="layout-sidenav-light.html"></a>
