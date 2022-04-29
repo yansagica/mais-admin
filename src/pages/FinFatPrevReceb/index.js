@@ -4,6 +4,8 @@ import Pizza from "../../components/Graficos/Pizza";
 import { UserData2 } from "../../Data";
 import "../FinFatPrevReceb/style.css";
 import axios from "axios";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
 
 var cnpj = "83369678000173";
 
@@ -330,96 +332,106 @@ export default function FinFatPrevReceb() {
 
   return (
     <>
-      <div className="bg-light" id="layoutSidenav_content">
-        <main>
-          <div className="container-fluid px-4">
-            <h3 className="mt-4 mb-4 fw-bold texto-roxo">
-              Faturamento Previsto x Recebidos/Parcela
-            </h3>
-            <hr />
-            <div class="container">
-              <div className="row">
-                <div className="col-xs-12 col-xl-2">
-                  <select
-                    className="form-select form-select-lg mb-3"
-                    aria-label="form-select-lg example"
-                    value={anoPeriodo}
-                    onChange={(e) => setAnoPeriodo(e.target.value)}
-                  >
-                    <option value="">...</option>
-                    {periodos.map((p, index) => (
-                      <option key={index} value={p.ano + "/" + p.seqano}>
-                        {p.ano}/{p.seqano}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="col-xs-12 col-xl-2">
-                  <select
-                    className="form-select form-select-lg mb-3"
-                    aria-label=".form-select-lg example"
-                    value={mes}
-                    onChange={(e) => setMes(e.target.value)}
-                  >
-                    <option value="">...</option>
-                    <option value="fat01">Janeiro</option>
-                    <option value="fat02">Fevereiro</option>
-                    <option value="fat03">Março</option>
-                    <option value="fat04">Abril</option>
-                    <option value="fat05">Maio</option>
-                    <option value="fat06">Junho</option>
-                    <option value="fat07">Julho</option>
-                    <option value="fat08">Agosto</option>
-                    <option value="fat09">Setembro</option>
-                    <option value="fat10">Outubro</option>
-                    <option value="fat11">Novembro</option>
-                    <option value="fat12">Dezembro</option>
-                  </select>
-                </div>
-              </div>
-              <div className="row">
-                <div class="col-md-4 col-xl-5">
-                  <div class="card bg-c-light order-card">
-                    <div class="card-block">
-                      {faturamento && <Pizza chartData={faturamento} />}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-xl-7">
-                  <div class="card bg-c-green order-card altura-card">
-                    <div class="card-block">
-                      <h5 class="m-b-20 fw-bold text-center">Faturamento</h5>
-                      <div className="d-flex align-items-center justify-content-around">
-                        {/* <BsCurrencyDollar size="55px" /> */}
-                        <span className="h1 fw-bold">
-                          {faturaCard.toLocaleString("pt-BR", {
-                            style: "currency",
-                            currency: "BRL",
-                          })}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card bg-c-orange order-card altura-card">
-                    <div class="card-block">
-                      <h5 class="m-b-20 fw-bold text-center">Recebidos</h5>
-                      <div className="d-flex align-items-center justify-content-around">
-                        {/* <HiOutlineTrendingDown size="55px" /> */}
-                        <span className="h1 fw-bold">
-                          {recebidoCard.toLocaleString("pt-BR", {
-                            style: "currency",
-                            currency: "BRL",
-                          })}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="sb-nav-fixed">
+        <Header />
+        <div id="layoutSidenav">
+          <div id="layoutSidenav_nav">
+            <Sidebar />
           </div>
-        </main>
-        <Footer />
+          <div className="bg-light" id="layoutSidenav_content">
+            <main>
+              <div className="container-fluid px-4">
+                <h3 className="mt-4 mb-4 fw-bold texto-roxo">
+                  Faturamento Previsto x Recebidos/Parcela
+                </h3>
+                <hr />
+                <div class="container">
+                  <div className="row">
+                    <div className="col-xs-12 col-xl-2">
+                      <select
+                        className="form-select form-select-lg mb-3"
+                        aria-label="form-select-lg example"
+                        value={anoPeriodo}
+                        onChange={(e) => setAnoPeriodo(e.target.value)}
+                      >
+                        <option value="">...</option>
+                        {periodos.map((p, index) => (
+                          <option key={index} value={p.ano + "/" + p.seqano}>
+                            {p.ano}/{p.seqano}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-xs-12 col-xl-2">
+                      <select
+                        className="form-select form-select-lg mb-3"
+                        aria-label=".form-select-lg example"
+                        value={mes}
+                        onChange={(e) => setMes(e.target.value)}
+                      >
+                        <option value="">...</option>
+                        <option value="fat01">Janeiro</option>
+                        <option value="fat02">Fevereiro</option>
+                        <option value="fat03">Março</option>
+                        <option value="fat04">Abril</option>
+                        <option value="fat05">Maio</option>
+                        <option value="fat06">Junho</option>
+                        <option value="fat07">Julho</option>
+                        <option value="fat08">Agosto</option>
+                        <option value="fat09">Setembro</option>
+                        <option value="fat10">Outubro</option>
+                        <option value="fat11">Novembro</option>
+                        <option value="fat12">Dezembro</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div class="col-md-4 col-xl-5">
+                      <div class="card bg-c-light order-card">
+                        <div class="card-block">
+                          {faturamento && <Pizza chartData={faturamento} />}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-xl-7">
+                      <div class="card bg-c-green order-card altura-card">
+                        <div class="card-block">
+                          <h5 class="m-b-20 fw-bold text-center">
+                            Faturamento
+                          </h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {faturaCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card bg-c-orange order-card altura-card">
+                        <div class="card-block">
+                          <h5 class="m-b-20 fw-bold text-center">Recebidos</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <HiOutlineTrendingDown size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {recebidoCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+            <Footer />
+          </div>
+        </div>
       </div>
     </>
   );

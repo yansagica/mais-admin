@@ -1,14 +1,8 @@
-import './App.css';
-import Dashboard from './pages/Dashboard';
-import { Login } from './pages/Login';
+import "./App.css";
+import Rotas from "./routes";
 
 function App() {
-  return (
-    <div>
-      {/* <Login /> */}
-      <Dashboard/>
-    </div>
-  );
+  return <Rotas />;
 }
 
 export default App;
