@@ -7,10 +7,10 @@ import Pizza from "../../components/Graficos/Pizza";
 import "../Principal/style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { GiExitDoor } from "react-icons/gi";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import jwt_decode from "jwt-decode";
+import api from '../../servicos/api'
 
 var cnpj = "83369678000173";
 
@@ -37,9 +37,7 @@ export default function Principal() {
   }, []);
 
   const getTotalGeral = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/${cnpj}`
-    );
+    const response = await api.get(`secretaria/${cnpj}`);
     const allData = response.data;
     console.log(allData);
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { login } from '../../servicos/auth'
+import api from "../../servicos/api";
 
 export const Login = () => {
   const [usuario, setUsuario] = useState("");
@@ -13,14 +15,12 @@ export const Login = () => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post("http://localhost:5000/user/login", {
+      const resp = await api.post("user/login", {
         usuario: usuario,
         senha: senha,
       });
+      login(resp.data.accessToken)
 
-      console.log(resp.data.accessToken);
-
-      document.cookie = resp.data.accessToken;
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {

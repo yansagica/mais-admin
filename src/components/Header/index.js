@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import api from "../../servicos/api";
 
 export default function Header() {
   const [name, setName] = useState([]);
@@ -11,7 +10,7 @@ export default function Header() {
 
   const Logout = async () => {
     try {
-      await axios.delete("http://localhost:5000/user/logout");
+      await api.delete("user/logout");
       navigate("/");
     } catch (error) {
       console.log(error);
