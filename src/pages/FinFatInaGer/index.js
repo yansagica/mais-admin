@@ -5,6 +5,7 @@ import "../FinFatInaGer/style.css";
 import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import api from "../../servicos/api";
 
 var cnpj = "83369678000173";
 
@@ -28,19 +29,17 @@ export default function FinFatInaGer() {
   }, [anoPeriodo]);
 
   const getTodosPeriodos = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/periodos/${cnpj}`
-    );
+    const response = await api.get(`secretaria/periodos/${cnpj}`);
     setPeriodos(response.data);
   };
 
   const getFaturaInadim = async () => {
-    let url = `http://localhost:5000/secretaria/${cnpj}`;
+    let url = `secretaria/${cnpj}`;
     const periodo = anoPeriodo.split("/");
 
     if (anoPeriodo.length > 0)
-      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
-    const response = await axios.get(url);
+      url = `secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
+    const response = await api.get(url);
     const allData = response.data;
 
     // FATURAMENTO

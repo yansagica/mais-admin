@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { login } from '../../servicos/auth'
+import { login } from "../../servicos/auth";
 import api from "../../servicos/api";
 
 export const Login = () => {
@@ -19,7 +19,8 @@ export const Login = () => {
         usuario: usuario,
         senha: senha,
       });
-      login(resp.data.accessToken)
+
+      login(resp.data.accessToken);
 
       navigate("/dashboard");
     } catch (error) {

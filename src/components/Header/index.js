@@ -3,6 +3,7 @@ import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import api from "../../servicos/api";
+import { logout } from "../../servicos/auth";
 
 export default function Header() {
   const [name, setName] = useState([]);
@@ -10,8 +11,9 @@ export default function Header() {
 
   const Logout = async () => {
     try {
-      await api.delete("user/logout");
+      const resp = await api.delete("user/logout");
       navigate("/");
+      logout(resp.data.accessToken);
     } catch (error) {
       console.log(error);
     }

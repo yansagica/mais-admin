@@ -13,6 +13,7 @@ import Pizza from "../../components/Graficos/Pizza";
 import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
+import api from "../../servicos/api";
 
 var cnpj = "83369678000173";
 
@@ -28,16 +29,14 @@ export default function SecAprovReprov() {
   const [reprovadosCard, setReprovadosCard] = useState(0);
 
   const getTodosPeriodos = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/periodos/${cnpj}`
-    );
+    const response = await api.get(`secretaria/periodos/${cnpj}`);
     setPeriodos(response.data);
   };
 
   const getTurmas = async () => {
     const periodo = anoPeriodo.split("/");
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]} `
+    const response = await api.get(
+      `secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]} `
     );
     setTurmas(response.data);
   };
@@ -62,22 +61,20 @@ export default function SecAprovReprov() {
   }, [turma]);
 
   const getTotalRegistros = async () => {
-    let url = `http://localhost:5000/secretaria/${cnpj}`;
+    let url = `secretaria/${cnpj}`;
     const periodo = anoPeriodo.split("/");
 
     if (anoPeriodo.length > 0)
-      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
+      url = `secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
     if (turma.length > 0)
-      url = `http://localhost:5000/secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}`;
+      url = `secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}`;
 
-    const response = await axios.get(url);
+    const response = await api.get(url);
     const allData = response.data;
 
     const totalAprov = allData.reduce((total, item) => total + item.qtdapr, 0);
     const totalReprov = allData.reduce((total, item) => total + item.qtdrep, 0);
-
-    console.log(totalAprov);
 
     setAprovados({
       labels: ["Aprovados", "Reprovados"],
@@ -143,20 +140,22 @@ export default function SecAprovReprov() {
                     </div>
                   </div>
                   <div className="row">
-                    <div class="col-md-4 col-xl-5">
-                      <div class="card bg-c-light order-card">
-                        <div class="card-block">
+                    <div className="col-md-4 col-xl-5">
+                      <div className="card bg-c-light order-card">
+                        <div className="card-block">
                           {aprovados && <Pizza chartData={aprovados} />}
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4 col-xl-7">
+                    <div className="col-md-4 col-xl-7">
                       <div
-                        class="card order-card altura-card"
+                        className="card order-card altura-card"
                         style={{ backgroundColor: "#0000ff" }}
                       >
-                        <div class="card-block">
-                          <h5 class="m-b-20 fw-bold text-center">Aprovados</h5>
+                        <div className="card-block">
+                          <h5 className="m-b-20 fw-bold text-center">
+                            Aprovados
+                          </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">{aprovadosCard}</span>
@@ -164,11 +163,13 @@ export default function SecAprovReprov() {
                         </div>
                       </div>
                       <div
-                        class="card order-card altura-card"
+                        className="card order-card altura-card"
                         style={{ backgroundColor: "#FF0000" }}
                       >
-                        <div class="card-block">
-                          <h5 class="m-b-20 fw-bold text-center">Reprovados</h5>
+                        <div className="card-block">
+                          <h5 className="m-b-20 fw-bold text-center">
+                            Reprovados
+                          </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <HiOutlineTrendingDown size="55px" /> */}
                             <span className="h1 fw-bold">{reprovadosCard}</span>

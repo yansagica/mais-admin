@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import jwt_decode from "jwt-decode";
-import api from '../../servicos/api'
+import api from "../../servicos/api";
 
 var cnpj = "83369678000173";
 
@@ -39,7 +39,6 @@ export default function Principal() {
   const getTotalGeral = async () => {
     const response = await api.get(`secretaria/${cnpj}`);
     const allData = response.data;
-    console.log(allData);
 
     const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
     const totalFichad = allData.reduce((total, item) => total + item.qtdfic, 0);
