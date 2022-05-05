@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import { FaUsers, FaUserFriends } from "react-icons/fa";
 import { MdOutlineFreeCancellation } from "react-icons/md";
@@ -7,8 +7,7 @@ import "../SecEvasaoCurso/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function SecEvasaoCurso() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -21,6 +20,8 @@ export default function SecEvasaoCurso() {
   const [seqano, setSeqano] = useState("");
   const [curso, setCurso] = useState("");
   const [cursos, setCursos] = useState([]);
+
+  const { cnpj } = useContext(AuthContext);
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);

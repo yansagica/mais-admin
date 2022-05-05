@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Footer from "../../components/Footer";
-import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from "react-icons/fa";
-import { MdOutlineFreeCancellation, MdRestore } from "react-icons/md";
-import { BiTransfer } from "react-icons/bi";
-import {
-  AiOutlineLike,
-  AiOutlineFileExclamation,
-  AiOutlineDislike,
-} from "react-icons/ai";
 import "../SecAprovReprov/style.css";
 import Pizza from "../../components/Graficos/Pizza";
-import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function SecAprovReprov() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
@@ -27,6 +17,8 @@ export default function SecAprovReprov() {
   const [reprovados, setReprovados] = useState(null);
   const [aprovadosCard, setAprovadosCard] = useState(0);
   const [reprovadosCard, setReprovadosCard] = useState(0);
+
+  const { cnpj } = useContext(AuthContext);
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);

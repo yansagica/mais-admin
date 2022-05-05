@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
-import { UserData5 } from "../../Data";
 import "../FinInaTurma/style.css";
-import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
+import api from "../../servicos/api";
 
 export default function FinInaTurma() {
   const [faturamento, setFaturamento] = useState(null);
@@ -17,6 +15,8 @@ export default function FinInaTurma() {
   const [periodos, setPeriodos] = useState([]);
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
+
+  const { cnpj } = useContext(AuthContext);
 
   useEffect(() => {
     getTodosPeriodos();
@@ -38,31 +38,29 @@ export default function FinInaTurma() {
   }, [turma]);
 
   const getTodosPeriodos = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/periodos/${cnpj}`
-    );
+    const response = await api.get(`secretaria/periodos/${cnpj}`);
     setPeriodos(response.data);
   };
 
   const getTurmas = async () => {
     const periodo = anoPeriodo.split("/");
-    const response = await axios.get(
-      `http://localhost:5000/secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}`
+    const response = await api.get(
+      `secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}`
     );
     setTurmas(response.data);
   };
 
   const getFaturaInadimTurma = async () => {
-    let url = `http://localhost:5000/secretaria/${cnpj}`;
+    let url = `secretaria/${cnpj}`;
     const periodo = anoPeriodo.split("/");
 
     if (anoPeriodo.length > 0)
-      url = `http://localhost:5000/secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
+      url = `secretaria/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
     if (turma.length > 0)
-      url = `http://localhost:5000/secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}`;
+      url = `secretaria/turmas/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}`;
 
-    const response = await axios.get(url);
+    const response = await api.get(url);
     const allData = response.data;
 
     // FATURAMENTO

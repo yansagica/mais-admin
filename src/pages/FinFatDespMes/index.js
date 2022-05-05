@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
 import "../FinFatDespMes/style.css";
-import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function FinFatDespMes() {
   const [faturamento, setFaturamento] = useState(null);
@@ -16,6 +14,8 @@ export default function FinFatDespMes() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
   const [mes, setMes] = useState("");
+
+  const { cnpj } = useContext(AuthContext);
 
   useEffect(() => {
     getTodosPeriodos();

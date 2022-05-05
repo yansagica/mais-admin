@@ -17,6 +17,7 @@ import { Login } from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import AuthProvider from "./contexts/Context";
 
 const Rotas = () => {
   return (

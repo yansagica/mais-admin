@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
-import api from "../../servicos/api";
 import { logout } from "../../servicos/auth";
+import { AuthContext } from "../../contexts/Context";
 
 export default function Header() {
-  const [name, setName] = useState([]);
   const navigate = useNavigate();
 
+  const { cnpj, nome } = useContext(AuthContext);
+
   const Logout = async () => {
-    try {
-      const resp = await api.delete("user/logout");
-      navigate("/");
-      logout(resp.data.accessToken);
-    } catch (error) {
-      console.log(error);
-    }
+    logout();
+    navigate("/");
   };
 
   return (
@@ -36,7 +32,7 @@ export default function Header() {
 
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
-            <p className="navbar-brand ps-3 m-5">Olá, {name}</p>
+            <p className="navbar-brand ps-3 m-5">Olá, {nome}</p>
           </div>
         </form>
 

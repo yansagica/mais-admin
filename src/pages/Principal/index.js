@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import { FaUsers, FaUserFriends } from "react-icons/fa";
 import { MdOutlineFreeCancellation } from "react-icons/md";
 import { BiTransfer } from "react-icons/bi";
 import Pizza from "../../components/Graficos/Pizza";
 import "../Principal/style.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import jwt_decode from "jwt-decode";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function Principal() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -25,12 +21,9 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
 
-  const [name, setName] = useState("");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
-  const [users, setUsers] = useState([]);
+  // var cnpj = "83369678000173";
 
-  const navigate = useNavigate();
+  const { cnpj, nome } = useContext(AuthContext);
 
   useEffect(() => {
     getTotalGeral();

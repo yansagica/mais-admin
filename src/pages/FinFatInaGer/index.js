@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
 import "../FinFatInaGer/style.css";
-import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function FinFatInaGer() {
   const [faturamento, setFaturamento] = useState(null);
@@ -15,6 +13,8 @@ export default function FinFatInaGer() {
   const [inadim, setInadim] = useState(0.0);
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
+
+  const { cnpj } = useContext(AuthContext);
 
   useEffect(() => {
     getTodosPeriodos();

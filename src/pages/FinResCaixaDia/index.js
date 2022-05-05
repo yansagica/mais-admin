@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import "../FinResCaixaDia/style.css";
 import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function FinResCaixaDia() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
@@ -42,6 +41,8 @@ export default function FinResCaixaDia() {
   const [dia29, setDia29] = useState(0.0);
   const [dia30, setDia30] = useState(0.0);
   const [dia31, setDia31] = useState(0.0);
+
+  const { cnpj } = useContext(AuthContext);
 
   useEffect(() => {
     getTodosPeriodos();

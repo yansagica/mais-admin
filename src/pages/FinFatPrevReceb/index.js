@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
-import { UserData2 } from "../../Data";
 import "../FinFatPrevReceb/style.css";
-import axios from "axios";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function FinFatPrevReceb() {
   const [faturamento, setFaturamento] = useState(null);
@@ -19,6 +16,8 @@ export default function FinFatPrevReceb() {
   const [periodos, setPeriodos] = useState([]);
   const [mes, setMes] = useState("");
   const [turmas, setTurmas] = useState([]);
+
+  const { cnpj } = useContext(AuthContext);
 
   useEffect(() => {
     getTodosPeriodos();

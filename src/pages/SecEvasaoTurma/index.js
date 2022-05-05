@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import { FaUsers, FaUserFriends, FaCarAlt, FaDog } from "react-icons/fa";
 import { MdOutlineFreeCancellation } from "react-icons/md";
@@ -7,8 +7,7 @@ import "../SecEvasaoTurma/style.css";
 import api from "../../servicos/api";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-
-var cnpj = "83369678000173";
+import { AuthContext } from "../../contexts/Context";
 
 export default function SecEvasaoTurma() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -21,6 +20,8 @@ export default function SecEvasaoTurma() {
   const [seqano, setSeqano] = useState("");
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
+
+  const { cnpj } = useContext(AuthContext);
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);
