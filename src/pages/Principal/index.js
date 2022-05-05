@@ -21,8 +21,6 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
 
-  // var cnpj = "83369678000173";
-
   const { cnpj, nome } = useContext(AuthContext);
 
   useEffect(() => {
