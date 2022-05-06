@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
 import "../FinResCaixaDia/style.css";
-import axios from "axios";
+import api from "../../servicos/api";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function FinResCaixaDia() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
@@ -42,7 +42,7 @@ export default function FinResCaixaDia() {
   const [dia30, setDia30] = useState(0.0);
   const [dia31, setDia31] = useState(0.0);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   useEffect(() => {
     getTodosPeriodos();
@@ -61,9 +61,7 @@ export default function FinResCaixaDia() {
   }, [mes]);
 
   const getTodosPeriodos = async () => {
-    const response = await axios.get(
-      `http://localhost:5000/recdia/periodos/${cnpj}`
-    );
+    const response = await api.get(`recdia/periodos/${cnpj}`);
     setPeriodos(response.data);
   };
 
@@ -71,8 +69,8 @@ export default function FinResCaixaDia() {
     const periodo = anoPeriodo.split("/");
 
     if (mes.length > 0) {
-      const response = await axios.get(
-        `http://localhost:5000/recdia/${cnpj}/${periodo[0]}/${periodo[1]}/${mes}`
+      const response = await api.get(
+        `recdia/${cnpj}/${periodo[0]}/${periodo[1]}/${mes}`
       );
       const allData = response.data;
 

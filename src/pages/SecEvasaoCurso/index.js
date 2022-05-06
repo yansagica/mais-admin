@@ -7,7 +7,7 @@ import "../SecEvasaoCurso/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function SecEvasaoCurso() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -21,7 +21,7 @@ export default function SecEvasaoCurso() {
   const [curso, setCurso] = useState("");
   const [cursos, setCursos] = useState([]);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);

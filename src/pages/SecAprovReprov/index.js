@@ -5,7 +5,7 @@ import Pizza from "../../components/Graficos/Pizza";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function SecAprovReprov() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
@@ -18,7 +18,7 @@ export default function SecAprovReprov() {
   const [aprovadosCard, setAprovadosCard] = useState(0);
   const [reprovadosCard, setReprovadosCard] = useState(0);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);

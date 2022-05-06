@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Pizza from "../../components/Graficos/Pizza";
 import "../FinInaTurma/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import { AuthContext } from "../../contexts/Context";
 import api from "../../servicos/api";
+import { getCnpj } from "../../servicos/auth";
 
 export default function FinInaTurma() {
   const [faturamento, setFaturamento] = useState(null);
@@ -16,7 +16,7 @@ export default function FinInaTurma() {
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   useEffect(() => {
     getTodosPeriodos();

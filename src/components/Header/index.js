@@ -3,12 +3,14 @@ import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../servicos/auth";
-import { AuthContext } from "../../contexts/Context";
+import jwt_decode from "jwt-decode";
+import { getToken } from "../../servicos/auth";
 
 export default function Header() {
   const navigate = useNavigate();
 
-  const { cnpj, nome } = useContext(AuthContext);
+  const chave = jwt_decode(getToken());
+  const nome = chave.nome;
 
   const Logout = async () => {
     logout();

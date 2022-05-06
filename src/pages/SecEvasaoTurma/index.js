@@ -7,7 +7,7 @@ import "../SecEvasaoTurma/style.css";
 import api from "../../servicos/api";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function SecEvasaoTurma() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -21,7 +21,7 @@ export default function SecEvasaoTurma() {
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);

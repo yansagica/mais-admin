@@ -5,7 +5,7 @@ import "../FinFatInaCur/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function FinFatInaCur() {
   const [faturamento, setFaturamento] = useState(null);
@@ -16,7 +16,7 @@ export default function FinFatInaCur() {
   const [curso, setCurso] = useState("");
   const [cursos, setCursos] = useState([]);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   useEffect(() => {
     getTodosPeriodos();

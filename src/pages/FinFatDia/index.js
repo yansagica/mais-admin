@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
 import Footer from "../../components/Footer";
 import "../FinFatDia/style.css";
-import { AuthContext } from "../../contexts/Context";
 
 export default function FinFatDia() {
-  const { cnpj } = useContext(AuthContext);
-
   return (
     <>
       <div className="bg-light" id="layoutSidenav_content">

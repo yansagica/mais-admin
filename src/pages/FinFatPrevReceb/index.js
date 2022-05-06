@@ -5,7 +5,7 @@ import "../FinFatPrevReceb/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function FinFatPrevReceb() {
   const [faturamento, setFaturamento] = useState(null);
@@ -17,7 +17,7 @@ export default function FinFatPrevReceb() {
   const [mes, setMes] = useState("");
   const [turmas, setTurmas] = useState([]);
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   useEffect(() => {
     getTodosPeriodos();

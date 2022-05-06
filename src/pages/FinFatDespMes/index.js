@@ -5,7 +5,7 @@ import "../FinFatDespMes/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function FinFatDespMes() {
   const [faturamento, setFaturamento] = useState(null);
@@ -15,7 +15,9 @@ export default function FinFatDespMes() {
   const [periodos, setPeriodos] = useState([]);
   const [mes, setMes] = useState("");
 
-  const { cnpj } = useContext(AuthContext);
+  const cnpj = getCnpj();
+
+  console.log(cnpj);
 
   useEffect(() => {
     getTodosPeriodos();

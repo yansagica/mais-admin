@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import { FaUsers, FaUserFriends } from "react-icons/fa";
 import { MdOutlineFreeCancellation } from "react-icons/md";
@@ -8,7 +8,7 @@ import "../Principal/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
-import { AuthContext } from "../../contexts/Context";
+import { getCnpj } from "../../servicos/auth";
 
 export default function Principal() {
   const [qtdMatriculados, setQtdMatriculados] = useState([]);
@@ -21,7 +21,7 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
 
-  const { cnpj, nome } = useContext(AuthContext);
+  const cnpj = getCnpj();
 
   useEffect(() => {
     getTotalGeral();
