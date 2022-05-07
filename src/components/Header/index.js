@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../servicos/auth";
 import jwt_decode from "jwt-decode";
 import { getToken } from "../../servicos/auth";
@@ -20,14 +20,15 @@ export default function Header() {
   return (
     <>
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-roxo">
-        <a className="navbar-brand ps-3" href="index.html">
+        <Link to="/dashboard" className="navbar-brand ps-3">
           MaisAdmin
-        </a>
+        </Link>
 
         <button
           className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
           id="sidebarToggle"
           href="#!"
+          onClick={() => console.log("clic")}
         >
           <i className="fas fa-bars"></i>
         </button>

@@ -20,12 +20,19 @@ export default function Principal() {
   const [faturamento, setFaturamento] = useState(null);
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
+  const [listaPeriodos, setListaPeriodos] = useState([]);
 
   const cnpj = getCnpj();
 
   useEffect(() => {
+    getTodosPeriodos();
     getTotalGeral();
   }, []);
+
+  const getTodosPeriodos = async () => {
+    const response = await api.get(`secretaria/periodos/${cnpj}`);
+    setListaPeriodos(response.data);
+  };
 
   const getTotalGeral = async () => {
     const response = await api.get(`secretaria/${cnpj}`);
@@ -260,6 +267,25 @@ export default function Principal() {
                 <h3 className="mt-4 mb-4 fw-bold texto-roxo">Resumo Geral</h3>
                 <hr />
                 <div className="container">
+                  <h3 className="mt-4 mb-4 fw-bold text-secondary">
+                    Períodos Ativos
+                  </h3>
+                  <div className="row">
+                    {listaPeriodos.map((p, index) => (
+                      <div key={index} className="col-md-6 col-xl-3">
+                        <div className="card bg-c-green order-card">
+                          <div className="card-block">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <span className="h1 fw-bold">
+                                {p.ano}/{p.seqano}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
                     Secretaria
                   </h3>
