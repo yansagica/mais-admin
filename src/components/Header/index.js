@@ -20,9 +20,14 @@ export default function Header() {
   return (
     <>
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-roxo">
-        <Link to="/dashboard" className="navbar-brand ps-3">
-          MaisAdmin
-        </Link>
+        <div className="">
+          <Link
+            to="/dashboard"
+            className="d-flex justify-content-center align-items-center navbar-brand ps-3 fw-bold"
+          >
+            MaisAdmin
+          </Link>
+        </div>
 
         <button
           className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -34,7 +39,7 @@ export default function Header() {
 
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
-            <p className="navbar-brand ps-3 m-5">Olá, {nome}</p>
+            <p className="h6 text-white m-5">Bem-vindo, {nome}!</p>
           </div>
         </form>
 

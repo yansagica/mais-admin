@@ -34,6 +34,10 @@ body{
    background:ghostwhite;
 }
 
+.bg-c-roxo {
+   background: linear-gradient(45deg,#8257E5, #9b7be6 )
+}
+
 .texto-roxo {
    color: #8257E5;
 }
