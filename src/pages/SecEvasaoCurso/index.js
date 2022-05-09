@@ -66,8 +66,9 @@ export default function SecEvasaoCurso() {
 
     const response = await api.get(url);
     const allData = response.data;
-    console.log(allData);
+
     setRegistros(allData);
+
     const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
     const totalFic = allData.reduce((total, item) => total + item.qtdfic, 0);
     const totalEva = allData.reduce((total, item) => total + item.qtdcats, 0);

@@ -176,7 +176,7 @@ export default function FinFatInaCur() {
                   Faturamento x Inadimplência(Curso)
                 </h3>
                 <hr />
-                <div class="container">
+                <div className="container">
                   <div className="row">
                     <div className="col-xs-12 col-xl-2">
                       <select
@@ -210,18 +210,18 @@ export default function FinFatInaCur() {
                     </div>
                   </div>
                   <div className="row">
-                    <div class="col-md-4 col-xl-5">
-                      <div class="card bg-c-light order-card">
-                        <div class="card-block">
+                    <div className="col-md-4 col-xl-5">
+                      <div className="card bg-c-light order-card">
+                        <div className="card-block">
                           {faturamento && <Pizza chartData={faturamento} />}
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4 col-xl-7">
+                    <div className="col-md-4 col-xl-7">
                       <h5 className="fw-bold">Valores</h5>
-                      <div class="card bg-c-green order-card altura-card">
-                        <div class="card-block">
-                          <h5 class="m-b-20 fw-bold text-center">
+                      <div className="card bg-c-green order-card altura-card">
+                        <div className="card-block">
+                          <h5 className="m-b-20 fw-bold text-center">
                             Faturamento
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
@@ -235,9 +235,9 @@ export default function FinFatInaCur() {
                           </div>
                         </div>
                       </div>
-                      <div class="card bg-c-red order-card altura-card">
-                        <div class="card-block">
-                          <h5 class="m-b-20 fw-bold text-center">
+                      <div className="card bg-c-red order-card altura-card">
+                        <div className="card-block">
+                          <h5 className="m-b-20 fw-bold text-center">
                             Inadimplência
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">

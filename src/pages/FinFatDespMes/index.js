@@ -17,8 +17,6 @@ export default function FinFatDespMes() {
 
   const cnpj = getCnpj();
 
-  console.log(cnpj);
-
   useEffect(() => {
     getTodosPeriodos();
     getFaturaDespesaPagaMes();

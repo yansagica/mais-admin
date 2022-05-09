@@ -273,10 +273,10 @@ export default function Principal() {
                   <div className="row">
                     {listaPeriodos.map((p, index) => (
                       <div key={index} className="col-md-6 col-xl-3">
-                        <div className="card bg-c-green order-card">
+                        <div className="card bg-c-light order-card">
                           <div className="card-block">
                             <div className="d-flex align-items-center justify-content-center">
-                              <span className="h1 fw-bold">
+                              <span className="h1 fw-bold text-dark">
                                 {p.ano}/{p.seqano}
                               </span>
                             </div>

@@ -49,9 +49,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/secevasaoturma">
                   Matriculados x Evasão (Turma)
                 </Link>
-                <Link className="nav-link" to="/secmatcodpag">
+                {/* <Link className="nav-link" to="/secmatcodpag">
                   Matriculados x Código de Pagamento
-                </Link>
+                </Link> */}
                 <Link className="nav-link" to="/secaprovreprov">
                   Aprovados/Reprovados
                 </Link>
@@ -82,10 +82,10 @@ export default function Sidebar() {
             >
               <nav className="sb-sidenav-menu-nested nav">
                 <Link className="nav-link" to="/finfatinager">
-                  Faturamento x Inadimplência Geral)
+                  Faturamento x Inadimplência (Geral)
                 </Link>
                 <Link className="nav-link" to="/finfatinacur">
-                  Faturamento x Inadimplência Curso)
+                  Faturamento x Inadimplência (Curso)
                 </Link>
                 <Link className="nav-link" to="/finfatdespmes">
                   Faturamento x Despesas pagas (Mês)
@@ -93,9 +93,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/finfatprevreceb">
                   Faturamento Previsto x Recebido / Parcela
                 </Link>
-                <Link className="nav-link" to="/finfatdia">
+                {/* <Link className="nav-link" to="/finfatdia">
                   Faturamento Dia (Últimos 30 dias)
-                </Link>
+                </Link> */}
                 <Link className="nav-link" to="/fininaturma">
                   Inadimplência por Turma
                 </Link>
