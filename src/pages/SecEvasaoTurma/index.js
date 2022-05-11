@@ -96,7 +96,7 @@ export default function SecEvasaoTurma() {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-3">
+                    <div className="col-12 col-lg-4 col-xl-3">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -111,7 +111,7 @@ export default function SecEvasaoTurma() {
                         ))}
                       </select>
                     </div>
-                    <div className="col-9">
+                    <div className="col-12 col-lg-8 col-xl-9">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"

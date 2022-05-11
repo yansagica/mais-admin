@@ -126,7 +126,7 @@ export default function FinResCaixaDia() {
                 <div className="container">
                   <div className="row">
                     <div className="row">
-                      <div className="col-2">
+                      <div className="col-12 col-lg-3 col-xl-2">
                         <select
                           className="form-select form-select-lg mb-3"
                           aria-label="form-select-lg example"
@@ -141,7 +141,7 @@ export default function FinResCaixaDia() {
                           ))}
                         </select>
                       </div>
-                      <div className="col-xs-12 col-xl-2">
+                      <div className="col-12 col-lg-3 col-xl-2">
                         <select
                           className="form-select form-select-lg mb-3"
                           aria-label=".form-select-lg example"

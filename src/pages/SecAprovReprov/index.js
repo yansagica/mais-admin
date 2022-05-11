@@ -100,7 +100,7 @@ export default function SecAprovReprov() {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-2">
+                    <div className="col-12 col-lg-4 col-xl-3">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -115,7 +115,7 @@ export default function SecAprovReprov() {
                         ))}
                       </select>
                     </div>
-                    <div className="col-10">
+                    <div className="col-12 col-lg-8 col-xl-9">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"

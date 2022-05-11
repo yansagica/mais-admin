@@ -112,10 +112,6 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-        {/* <div className="sb-sidenav-footer">
-               <div className="small">Logged in as:</div>
-               Start Bootstrap
-            </div> */}
       </nav>
     </>
   );

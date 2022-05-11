@@ -1,10 +1,12 @@
 import React from "react";
-import "./style.css";
-import "./script";
+import "../../App.css";
+import "../../script";
 import Header from "../../components/Header";
-import Content from "../../components/Content";
 import Sidebar from "../../components/Sidebar";
 import Rotas from "../../routes";
+import { Link } from "react-router-dom";
+import { GiExitDoor } from "react-icons/gi";
+import { FcBullish, FcInspection, FcStatistics } from "react-icons/fc";
 
 export default function Dashboard() {
   return (

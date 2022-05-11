@@ -8,6 +8,7 @@ export const login = (token) => {
 };
 
 export const getCnpj = () => {
+  const token = getToken();
   const chave = jwt_decode(getToken());
   return chave.cnpj;
 };

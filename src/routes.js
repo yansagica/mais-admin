@@ -14,10 +14,9 @@ import FinInaTurma from "./pages/FinInaTurma";
 import FinResCaixaDia from "./pages/FinResCaixaDia";
 import FinResCaixaDiaForpag from "./pages/FinResCaixaDiaForpag";
 import { Login } from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import AuthProvider from "./contexts/Context";
+// import Dashboard from "./pages/Dashboard";
+// import Header from "./components/Header";
+// import Sidebar from "./components/Sidebar";
 
 const Rotas = () => {
   return (

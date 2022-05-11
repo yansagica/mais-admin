@@ -178,7 +178,7 @@ export default function FinInaTurma() {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-2">
+                    <div className="col-12 col-lg-3 col-xl-2">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -193,7 +193,7 @@ export default function FinInaTurma() {
                         ))}
                       </select>
                     </div>
-                    <div className="col-10">
+                    <div className="col-12 col-lg-9 col-xl-10">
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -224,7 +224,6 @@ export default function FinInaTurma() {
                             Faturamento
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
                               {faturaCard.toLocaleString("pt-BR", {
                                 style: "currency",
@@ -240,7 +239,6 @@ export default function FinInaTurma() {
                             Inadimplência
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <HiOutlineTrendingDown size="55px" /> */}
                             <span className="h1 fw-bold">
                               {inadim.toLocaleString("pt-BR", {
                                 style: "currency",

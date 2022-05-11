@@ -210,22 +210,20 @@ export default function FinFatInaCur() {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-md-4 col-xl-5">
+                    <div className="col-md-6 col-lg-12 col-xl-5">
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
                           {faturamento && <Pizza chartData={faturamento} />}
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4 col-xl-7">
-                      <h5 className="fw-bold">Valores</h5>
+                    <div className="col-md-6 col-xl-7">
                       <div className="card bg-c-green order-card altura-card">
                         <div className="card-block">
                           <h5 className="m-b-20 fw-bold text-center">
                             Faturamento
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
                               {faturaCard.toLocaleString("pt-BR", {
                                 style: "currency",
@@ -241,7 +239,6 @@ export default function FinFatInaCur() {
                             Inadimplência
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <HiOutlineTrendingDown size="55px" /> */}
                             <span className="h1 fw-bold">
                               {inadim.toLocaleString("pt-BR", {
                                 style: "currency",
