@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import "../../script";
-
 import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../servicos/auth";
@@ -20,8 +19,8 @@ export default function Header() {
 
   const getUltAtu = async () => {
     const resp = await api.get(`user/users/${cnpj}/${id}`);
-    const dados = resp.data;
-    setUltimaAtu(dados.ultatu);
+    const dados = resp.data.ultatu;
+    setUltimaAtu(dados);
   };
 
   const Logout = async () => {
