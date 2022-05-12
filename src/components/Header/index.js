@@ -7,6 +7,7 @@ import { logout } from "../../servicos/auth";
 import jwt_decode from "jwt-decode";
 import { getToken } from "../../servicos/auth";
 import api from "../../servicos/api";
+import { BiRefresh } from "react-icons/bi";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -51,11 +52,11 @@ export default function Header() {
         >
           <i className="fas fa-bars"></i>
         </button>
-
-        <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-          <div className="input-group">
-            <span className="h6 text-white m-5 fw-bold">
-              Bem-vindo, {nome}!
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+          <div class="input-group">
+            <span className="h6 fw-bold text-white">
+              Bem-vindo, {nome} <BiRefresh size={30} /> Atualizado em:{" "}
+              {ultimaAtu}{" "}
             </span>
           </div>
         </form>

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../servicos/auth";
+import { isAuthenticated, login } from "../../servicos/auth";
 import api from "../../servicos/api";
 
 export const Login = () => {
@@ -28,6 +28,18 @@ export const Login = () => {
       }
     }
   };
+
+  const Autenticate = () => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    Autenticate();
+  }, []);
 
   return (
     <>

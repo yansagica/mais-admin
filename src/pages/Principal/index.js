@@ -280,7 +280,7 @@ export default function Principal() {
                         <div className="card bg-c-roxo order-card">
                           <div className="card-block">
                             <div className="d-flex align-items-center justify-content-center">
-                              <span className="h1 fw-bold text-white">
+                              <span className="h3 fw-bold text-white">
                                 {p.ano}/{p.seqano}
                               </span>
                             </div>
@@ -289,6 +289,8 @@ export default function Principal() {
                       </div>
                     ))}
                   </div>
+
+                  <hr />
 
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
                     Secretaria
@@ -301,8 +303,8 @@ export default function Principal() {
                             Matriculados
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            <FaUsers size="55px" />
-                            <span className="h1 fw-bold">
+                            <FaUsers size="45px" />
+                            <span className="h3 fw-bold">
                               {qtdMatriculados}
                             </span>
                           </div>
@@ -317,8 +319,8 @@ export default function Principal() {
                             Fichados
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            <FaUserFriends color="" size="55px" />
-                            <span className="h1 fw-bold">{qtdFichados}</span>
+                            <FaUserFriends color="" size="45px" />
+                            <span className="h3 fw-bold">{qtdFichados}</span>
                           </div>
                         </div>
                       </div>
@@ -329,8 +331,8 @@ export default function Principal() {
                         <div className="card-block">
                           <h6 className="m-b-20 fw-bold text-center">Evasão</h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            <MdOutlineFreeCancellation color="" size="55px" />
-                            <span className="h1 fw-bold">{qtdEvasao}</span>
+                            <MdOutlineFreeCancellation color="" size="45px" />
+                            <span className="h3 fw-bold">{qtdEvasao}</span>
                           </div>
                         </div>
                       </div>
@@ -343,13 +345,15 @@ export default function Principal() {
                             Transferência Final de Ano
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            <BiTransfer color="" size="55px" />
-                            <span className="h1 fw-bold">{qtdTfa}</span>
+                            <BiTransfer color="" size="45px" />
+                            <span className="h3 fw-bold">{qtdTfa}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  <hr />
 
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
                     Financeiro
@@ -391,8 +395,7 @@ export default function Principal() {
                             Recebidos
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h3 fw-bold">
                               {recebidos.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -408,8 +411,7 @@ export default function Principal() {
                             Inadimplência
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
-                            {/* <HiOutlineTrendingDown size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h3 fw-bold">
                               {inadim.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
