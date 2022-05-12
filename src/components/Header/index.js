@@ -55,6 +55,9 @@ export default function Header() {
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
             <p className="h6 text-white m-5 fw-bold">Bem-vindo, {nome}!</p>
+            <p className="h6 text-white m-5 fw-bold">
+              Última atualização - {ultimaAtu}!
+            </p>
           </div>
         </form>
 

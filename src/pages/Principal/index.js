@@ -22,10 +22,8 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
   const [listaPeriodos, setListaPeriodos] = useState([]);
-  const [ultimaAtu, setUltimaAtu] = useState([]);
 
   useEffect(() => {
-    getUltAtu();
     getTodosPeriodos();
     getTotalGeral();
   }, []);
@@ -34,12 +32,6 @@ export default function Principal() {
   const nome = chave.nome;
   const id = chave.userId;
   const cnpj = chave.cnpj;
-
-  const getUltAtu = async () => {
-    const resp = await api.get(`user/users/${cnpj}/${id}`);
-    const dados = resp.data;
-    setUltimaAtu(dados.ultatu);
-  };
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);
@@ -276,9 +268,7 @@ export default function Principal() {
           <div className="bg-light" id="layoutSidenav_content">
             <main>
               <div className="container-fluid px-4">
-                <h3 className="mt-4 mb-4 fw-bold texto-roxo">
-                  Resumo Geral - Última atualização: {ultimaAtu}
-                </h3>
+                <h3 className="mt-4 mb-4 fw-bold texto-roxo">Resumo Geral</h3>
                 <hr />
                 <div className="container">
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
