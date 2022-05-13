@@ -31,15 +31,15 @@ export default function Principal() {
   const chave = jwt_decode(getToken());
   const nome = chave.nome;
   const id = chave.userId;
-  const cnpj = chave.cnpj;
+  const codmaisadmin = chave.codmaisadmin;
 
   const getTodosPeriodos = async () => {
-    const response = await api.get(`secretaria/periodos/${cnpj}`);
+    const response = await api.get(`secretaria/periodos/${codmaisadmin}`);
     setListaPeriodos(response.data);
   };
 
   const getTotalGeral = async () => {
-    const response = await api.get(`secretaria/${cnpj}`);
+    const response = await api.get(`secretaria/${codmaisadmin}`);
     const allData = response.data;
 
     const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
