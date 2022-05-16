@@ -2,7 +2,6 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api = axios.create({
-  // baseURL: "http://192.168.100.10:5000/",
   baseURL: "https://maisadmin.herokuapp.com/",
 });
 
