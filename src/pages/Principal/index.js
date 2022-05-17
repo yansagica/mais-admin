@@ -22,6 +22,7 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
   const [listaPeriodos, setListaPeriodos] = useState([]);
+  const [teste, setTeste] = useState("");
 
   useEffect(() => {
     getTodosPeriodos();
