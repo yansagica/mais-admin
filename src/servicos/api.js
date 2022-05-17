@@ -2,8 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api = axios.create({
-  // baseURL: "http://192.168.100.75:5000/",
-  baseURL: 'https://maisadmin.herokuapp.com/',
+  baseURL: "https://maisadmin.herokuapp.com/",
 });
 
 api.interceptors.request.use(
