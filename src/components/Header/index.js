@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
-import "../../script";
 import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../servicos/auth";
