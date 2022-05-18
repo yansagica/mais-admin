@@ -1,6 +1,5 @@
 import React from "react";
 import "../../App.css";
-import "../../script";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Rotas from "../../routes";

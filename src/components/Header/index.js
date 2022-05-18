@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./style.css";
 import { GiExitDoor } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../servicos/auth";
@@ -7,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import { getToken } from "../../servicos/auth";
 import api from "../../servicos/api";
 import { BiRefresh } from "react-icons/bi";
+import "./style.css";
 
 export default function Header() {
   const navigate = useNavigate();
