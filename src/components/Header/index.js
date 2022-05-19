@@ -15,10 +15,10 @@ export default function Header() {
   const chave = jwt_decode(getToken());
   const nome = chave.nome;
   const id = chave.userId;
-  const codmaisad = chave.codmaisad;
+  const cnpj = chave.cnpj;
 
   const getUltAtu = async () => {
-    const resp = await api.get(`user/users/${codmaisad}/${id}`);
+    const resp = await api.get(`user/users/${cnpj}/${id}`);
     const dados = resp.data.ultatu;
     setUltimaAtu(dados);
   };
