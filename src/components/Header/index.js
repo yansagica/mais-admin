@@ -21,7 +21,7 @@ export default function Header() {
   const getUltAtu = async () => {
     const resp = await api.get(`user/users/${cnpj}/${id}`);
     const dados = resp.data.ultatu;
-    console.log(dados);
+
     setUltimaAtu(dados);
   };
 
@@ -35,7 +35,6 @@ export default function Header() {
   }, []);
 
   const menuToggle = (event) => {
-    console.log("carregou");
     event.preventDefault();
     document.body.classList.toggle("sb-sidenav-toggled");
     localStorage.setItem(
