@@ -30,11 +30,8 @@ export default function Principal() {
   }, []);
 
   const chave = jwt_decode(getToken());
-  const nome = chave.nome;
-  const id = chave.userId;
-  const cnpj = chave.cnpj;
 
-  console.log(cnpj);
+  const cnpj = chave.cnpj;
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);
@@ -44,7 +41,6 @@ export default function Principal() {
   const getTotalGeral = async () => {
     const response = await api.get(`secretaria/${cnpj}`);
     const allData = response.data;
-    console.log(allData);
 
     const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
     const totalFichad = allData.reduce((total, item) => total + item.qtdfic, 0);

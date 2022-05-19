@@ -11,6 +11,7 @@ import "./style.css";
 export default function Header() {
   const navigate = useNavigate();
   const [ultimaAtu, setUltimaAtu] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const chave = jwt_decode(getToken());
   const nome = chave.nome;
@@ -20,6 +21,7 @@ export default function Header() {
   const getUltAtu = async () => {
     const resp = await api.get(`user/users/${cnpj}/${id}`);
     const dados = resp.data.ultatu;
+    console.log(dados);
     setUltimaAtu(dados);
   };
 
@@ -31,6 +33,16 @@ export default function Header() {
   useEffect(() => {
     getUltAtu();
   }, []);
+
+  const menuToggle = (event) => {
+    console.log("carregou");
+    event.preventDefault();
+    document.body.classList.toggle("sb-sidenav-toggled");
+    localStorage.setItem(
+      "sb|sidebar-toggle",
+      document.body.classList.contains("sb-sidenav-toggled")
+    );
+  };
 
   return (
     <>
@@ -48,11 +60,12 @@ export default function Header() {
           className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
           id="sidebarToggle"
           href="#!"
+          onClick={menuToggle}
         >
           <i className="fas fa-bars"></i>
         </button>
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-          <div class="input-group">
+        <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+          <div className="input-group">
             <span className="h6 fw-bold text-white">
               Bem-vindo, {nome} <BiRefresh size={30} /> Atualizado em:{" "}
               {ultimaAtu}{" "}
