@@ -21,7 +21,6 @@ export default function Header() {
   const getUltAtu = async () => {
     const resp = await api.get(`user/users/${cnpj}/${id}`);
     const dados = resp.data.ultatu;
-
     setUltimaAtu(dados);
   };
 
