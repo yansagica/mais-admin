@@ -1,27 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FcBullish, FcInspection, FcStatistics } from "react-icons/fc";
+import api from "../../servicos/api";
+import { getToken } from "../../servicos/auth";
+import jwt_decode from "jwt-decode";
+import "./Sidebar.css";
 
 export default function Sidebar() {
+  const [ultimaAtu, setUltimaAtu] = useState([]);
+  const [logo, setLogo] = useState([]);
+
+  const chave = jwt_decode(getToken());
+  const id = chave.userId;
+  const cnpj = chave.cnpj;
+
+  const getUltAtu = async () => {
+    const resp = await api.get(`user/users/${cnpj}/${id}`);
+    const dados = resp.data.ultatu;
+    setUltimaAtu(dados);
+  };
+
+  const getLogo = async () => {
+    const resp = await api.get(`user/users/${cnpj}/${id}`);
+    const dados = resp.data.img;
+    setLogo(dados);
+  };
+
+  useEffect(() => {
+    getUltAtu();
+    getLogo();
+  }, []);
+
   return (
     <>
       <nav
-        className="sb-sidenav accordion sb-sidenav-light mt-3"
+        className="sb-sidenav accordion sb-sidenav-light mt-3 bg-light border-end"
         id="sidenavAccordion"
       >
         <div className="sb-sidenav-menu">
           <div className="nav">
-            {/* <div className="sb-sidenav-menu-heading">Core</div> */}
-            <Link className="nav-link" to="/dashboard">
+            <a className="nav-link flex justify-content-center align-items-center">
+              <div className="sb-nav-link-icon">
+                <img src={logo} width={150} height={150} />
+              </div>
+            </a>
+            <div className="text-center">
+              <small className="texto-pequeno text-dark">
+                Dados atualizados em:
+              </small>
+            </div>
+
+            <div className="text-center">
+              <small className="texto-pequeno text-dark">{ultimaAtu}</small>
+            </div>
+            <hr className="text-dark" />
+
+            <Link className="nav-link fw-bold" to="/dashboard">
               <div className="sb-nav-link-icon">
                 <FcStatistics size={20} />
               </div>
               Resumo Geral
             </Link>
 
-            {/* <div className="sb-sidenav-menu-heading">Interface</div> */}
             <a
-              className="nav-link collapsed"
+              className="nav-link collapsed fw-bold"
               href="#"
               data-bs-toggle="collapse"
               data-bs-target="#collapseLayouts"
@@ -49,9 +91,6 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/secevasaoturma">
                   Matriculados x Evasão (Turma)
                 </Link>
-                {/* <Link className="nav-link" to="/secmatcodpag">
-                  Matriculados x Código de Pagamento
-                </Link> */}
                 <Link className="nav-link" to="/secaprovreprov">
                   Aprovados/Reprovados
                 </Link>
@@ -59,7 +98,7 @@ export default function Sidebar() {
             </div>
 
             <a
-              className="nav-link collapsed"
+              className="nav-link collapsed fw-bold"
               href="#"
               data-bs-toggle="collapse"
               data-bs-target="#collapseLayouts2"

@@ -18,20 +18,16 @@ export default function Header() {
   const id = chave.userId;
   const cnpj = chave.cnpj;
 
-  const getUltAtu = async () => {
-    const resp = await api.get(`user/users/${cnpj}/${id}`);
-    const dados = resp.data.ultatu;
-    setUltimaAtu(dados);
-  };
+  // const getUltAtu = async () => {
+  //   const resp = await api.get(`user/users/${cnpj}/${id}`);
+  //   const dados = resp.data.ultatu;
+  //   setUltimaAtu(dados);
+  // };
 
   const Logout = async () => {
     logout();
     navigate("/");
   };
-
-  useEffect(() => {
-    getUltAtu();
-  }, []);
 
   const menuToggle = (event) => {
     event.preventDefault();
@@ -64,10 +60,7 @@ export default function Header() {
         </button>
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
-            <span className="h6 fw-bold text-white">
-              Bem-vindo, {nome} <BiRefresh size={30} /> Atualizado em:{" "}
-              {ultimaAtu}{" "}
-            </span>
+            <span className="h6 fw-bold text-white">Bem-vindo, {nome}</span>
           </div>
         </form>
 

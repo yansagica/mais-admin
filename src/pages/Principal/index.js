@@ -26,16 +26,22 @@ export default function Principal() {
 
   useEffect(() => {
     getTodosPeriodos();
+    salvaAcesso();
     getTotalGeral();
   }, []);
 
   const chave = jwt_decode(getToken());
 
   const cnpj = chave.cnpj;
+  const id = chave.userId;
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`secretaria/periodos/${cnpj}`);
     setListaPeriodos(response.data);
+  };
+
+  const salvaAcesso = async () => {
+    const resp = await api.patch(`user/users/${cnpj}/${id}`);
   };
 
   const getTotalGeral = async () => {
