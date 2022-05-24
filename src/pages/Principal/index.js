@@ -296,8 +296,6 @@ export default function Principal() {
                     ))}
                   </div>
 
-                  <hr />
-
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
                     Secretaria
                   </h3>
@@ -358,8 +356,6 @@ export default function Principal() {
                       </div>
                     </div>
                   </div>
-
-                  <hr />
 
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">
                     Financeiro
