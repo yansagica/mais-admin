@@ -96,7 +96,8 @@ export default function SecEvasaoCurso() {
                 <hr />
                 <div className="container">
                   <div className="row">
-                    <div className="col-12 col-lg-4 col-xl-3">
+                    <div className="col-xs-12 col-xl-2">
+                      <label className="fw-bold">Ano/período</label>
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -111,7 +112,8 @@ export default function SecEvasaoCurso() {
                         ))}
                       </select>
                     </div>
-                    <div className="col-12 col-lg-8 col-xl-9">
+                    <div className="col-xs-12 col-xl-10">
+                      <label className="fw-bold">Curso</label>
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"

@@ -19,6 +19,7 @@ export default function Principal() {
   const [userData, setUserData] = useState(null);
   const [previstos, setPrevistos] = useState(null);
   const [faturamento, setFaturamento] = useState(null);
+  const [faturamentoCard, setFaturamentoCard] = useState(0.0);
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
   const [listaPeriodos, setListaPeriodos] = useState([]);
@@ -227,6 +228,21 @@ export default function Principal() {
       ],
     });
 
+    setFaturamentoCard(
+      totalFat01 +
+        totalFat02 +
+        totalFat03 +
+        totalFat04 +
+        totalFat05 +
+        totalFat06 +
+        totalFat07 +
+        totalFat08 +
+        totalFat09 +
+        totalFat10 +
+        totalFat11 +
+        totalFat12
+    );
+
     setRecebidos(
       totalRec01 +
         totalRec02 +
@@ -391,11 +407,27 @@ export default function Principal() {
 
                     <div className="col-md-12 col-xl-3">
                       <h5 className="fw-bold">Valores</h5>
-                      <div className="card bg-c-green order-card">
-                        <div className="card-block">
-                          <h6 className="m-b-20 fw-bold text-center">
-                            Recebidos
-                          </h6>
+
+                      <div
+                        style={{ backgroundColor: "#58a6ff" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h6 className="fw-bold text-center">Faturamento</h6>
+                          <div className="d-flex align-items-center justify-content-around">
+                            <span className="h3 fw-bold">
+                              {faturamentoCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card bg-c-green order-card mb-3">
+                        <div className="p-2">
+                          <h6 className="fw-bold text-center">Recebidos</h6>
                           <div className="d-flex align-items-center justify-content-around">
                             <span className="h3 fw-bold">
                               {recebidos.toLocaleString("pt-BR", {
@@ -407,8 +439,8 @@ export default function Principal() {
                         </div>
                       </div>
 
-                      <div className="card bg-c-red order-card">
-                        <div className="card-block">
+                      <div className="card bg-c-red order-card mb-3">
+                        <div className="p-2">
                           <h6 className="m-b-20 fw-bold text-center">
                             Inadimplência
                           </h6>
