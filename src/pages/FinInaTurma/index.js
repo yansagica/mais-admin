@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
 import { getCnpj } from "../../servicos/auth";
+import { frasePeriodo } from "../../Funcoes";
 
 export default function FinInaTurma() {
   const [faturamento, setFaturamento] = useState(null);
@@ -15,8 +16,13 @@ export default function FinInaTurma() {
   const [periodos, setPeriodos] = useState([]);
   const [turma, setTurma] = useState("");
   const [turmas, setTurmas] = useState([]);
+  const [frase, setFrase] = useState("");
+  const [recebidoCard, setRecebidoCard] = useState(0.0);
+  const [aVencerCard, setaVencerCard] = useState(0.0);
 
   const cnpj = getCnpj();
+  const data = new Date();
+  const mes = data.getMonth();
 
   useEffect(() => {
     getTodosPeriodos();
@@ -78,6 +84,63 @@ export default function FinInaTurma() {
     const totalFat11 = allData.reduce((total, item) => total + item.fat11, 0);
     const totalFat12 = allData.reduce((total, item) => total + item.fat12, 0);
 
+    const arrayFatMes = [
+      totalFat01,
+      totalFat02,
+      totalFat03,
+      totalFat04,
+      totalFat05,
+      totalFat06,
+      totalFat07,
+      totalFat08,
+      totalFat09,
+      totalFat10,
+      totalFat11,
+      totalFat12,
+    ];
+
+    var totalFat = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalFat = totalFat + arrayFatMes[i];
+    }
+
+    // RECEBIDO
+
+    const totalRec01 = allData.reduce((total, item) => total + item.rec01, 0);
+    const totalRec02 = allData.reduce((total, item) => total + item.rec02, 0);
+    const totalRec03 = allData.reduce((total, item) => total + item.rec03, 0);
+    const totalRec04 = allData.reduce((total, item) => total + item.rec04, 0);
+    const totalRec05 = allData.reduce((total, item) => total + item.rec05, 0);
+    const totalRec06 = allData.reduce((total, item) => total + item.rec06, 0);
+    const totalRec07 = allData.reduce((total, item) => total + item.rec07, 0);
+    const totalRec08 = allData.reduce((total, item) => total + item.rec08, 0);
+    const totalRec09 = allData.reduce((total, item) => total + item.rec09, 0);
+    const totalRec10 = allData.reduce((total, item) => total + item.rec10, 0);
+    const totalRec11 = allData.reduce((total, item) => total + item.rec11, 0);
+    const totalRec12 = allData.reduce((total, item) => total + item.rec12, 0);
+
+    const arrayRecMes = [
+      totalRec01,
+      totalRec02,
+      totalRec03,
+      totalRec04,
+      totalRec05,
+      totalRec06,
+      totalRec07,
+      totalRec08,
+      totalRec09,
+      totalRec10,
+      totalRec11,
+      totalRec12,
+    ];
+
+    var totalRec = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalRec = totalRec + arrayRecMes[i];
+    }
+
     // VENCIDOS
 
     const totalDeb01 = allData.reduce((total, item) => total + item.deb01, 0);
@@ -93,72 +156,45 @@ export default function FinInaTurma() {
     const totalDeb11 = allData.reduce((total, item) => total + item.deb11, 0);
     const totalDeb12 = allData.reduce((total, item) => total + item.deb12, 0);
 
+    const arrayDebMes = [
+      totalDeb01,
+      totalDeb02,
+      totalDeb03,
+      totalDeb04,
+      totalDeb05,
+      totalDeb06,
+      totalDeb07,
+      totalDeb08,
+      totalDeb09,
+      totalDeb10,
+      totalDeb11,
+      totalDeb12,
+    ];
+
+    var totalDeb = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalDeb = totalDeb + arrayDebMes[i];
+    }
+
+    const totalAvencer = totalFat - totalRec - totalDeb;
+
     setFaturamento({
-      labels: ["Faturamento", "Inadimplência"],
+      labels: ["Recebido", "A vencer", "Inadimplência"],
       datasets: [
         {
           label: "userGain",
-          data: [
-            totalFat01 +
-              totalFat02 +
-              totalFat03 +
-              totalFat04 +
-              totalFat05 +
-              totalFat06 +
-              totalFat07 +
-              totalFat08 +
-              totalFat09 +
-              totalFat10 +
-              totalFat11 +
-              totalFat12,
-
-            totalDeb01 +
-              totalDeb02 +
-              totalDeb03 +
-              totalDeb04 +
-              totalDeb05 +
-              totalDeb06 +
-              totalDeb07 +
-              totalDeb08 +
-              totalDeb09 +
-              totalDeb10 +
-              totalDeb11 +
-              totalDeb12,
-          ],
-          backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          data: [totalRec, totalAvencer, totalDeb],
+          backgroundColor: ["#20b2aa", "#eda044", "#FF0000"],
         },
       ],
     });
 
-    setFaturaCard(
-      totalFat01 +
-        totalFat02 +
-        totalFat03 +
-        totalFat04 +
-        totalFat05 +
-        totalFat06 +
-        totalFat07 +
-        totalFat08 +
-        totalFat09 +
-        totalFat10 +
-        totalFat11 +
-        totalFat12
-    );
-
-    setInadim(
-      totalDeb01 +
-        totalDeb02 +
-        totalDeb03 +
-        totalDeb04 +
-        totalDeb05 +
-        totalDeb06 +
-        totalDeb07 +
-        totalDeb08 +
-        totalDeb09 +
-        totalDeb10 +
-        totalDeb11 +
-        totalDeb12
-    );
+    setFaturaCard(totalFat);
+    setRecebidoCard(totalRec);
+    setaVencerCard(totalAvencer);
+    setInadim(totalDeb);
+    setFrase(frasePeriodo(mes));
   };
 
   return (
@@ -179,6 +215,7 @@ export default function FinInaTurma() {
                 <div className="container">
                   <div className="row">
                     <div className="col-12 col-lg-3 col-xl-2">
+                      <label className="fw-bold">Ano/período</label>
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -194,6 +231,7 @@ export default function FinInaTurma() {
                       </select>
                     </div>
                     <div className="col-12 col-lg-9 col-xl-10">
+                      <label className="fw-bold">Turma</label>
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -208,9 +246,11 @@ export default function FinInaTurma() {
                         ))}
                       </select>
                     </div>
+                    <div className="mb-2">{frase}</div>
                   </div>
                   <div className="row">
                     <div className="col-md-4 col-xl-5">
+                      {/* <h5 className="fw-bold">Faturamento x Inadimplência</h5> */}
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
                           {faturamento && <Pizza chartData={faturamento} />}
@@ -218,12 +258,15 @@ export default function FinInaTurma() {
                       </div>
                     </div>
                     <div className="col-md-4 col-xl-7">
-                      <div className="card bg-c-green order-card altura-card">
-                        <div className="card-block">
-                          <h5 className="m-b-20 fw-bold text-center">
-                            Faturamento
-                          </h5>
+                      {/* <h5 classNameName="fw-bold">Valores</h5> */}
+                      <div
+                        style={{ backgroundColor: "#58a6ff" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Faturamento</h5>
                           <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
                               {faturaCard.toLocaleString("pt-BR", {
                                 style: "currency",
@@ -233,12 +276,47 @@ export default function FinInaTurma() {
                           </div>
                         </div>
                       </div>
-                      <div className="card bg-c-red order-card altura-card">
-                        <div className="card-block">
-                          <h5 className="m-b-20 fw-bold text-center">
-                            Inadimplência
-                          </h5>
+                      <div
+                        style={{ backgroundColor: "#20b2aa" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Recebido</h5>
                           <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {recebidoCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        style={{ backgroundColor: "#eda044" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">A vencer</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {aVencerCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card bg-c-red order-card mb-3">
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Inadimplência</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <HiOutlineTrendingDown size="55px" /> */}
                             <span className="h1 fw-bold">
                               {inadim.toLocaleString("pt-BR", {
                                 style: "currency",

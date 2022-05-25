@@ -141,9 +141,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/finfatdespmes">
                   Faturamento x Despesas pagas (Mês)
                 </Link>
-                <Link className="nav-link" to="/finfatprevreceb">
+                {/* <Link className="nav-link" to="/finfatprevreceb">
                   Faturamento Previsto x Recebido / Parcela
-                </Link>
+                </Link> */}
                 {/* <Link className="nav-link" to="/finfatdia">
                   Faturamento Dia (Últimos 30 dias)
                 </Link> */}

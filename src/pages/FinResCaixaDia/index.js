@@ -127,6 +127,7 @@ export default function FinResCaixaDia() {
                   <div className="row">
                     <div className="row">
                       <div className="col-12 col-lg-3 col-xl-2">
+                        <label className="fw-bold">Ano/período</label>
                         <select
                           className="form-select form-select-lg mb-3"
                           aria-label="form-select-lg example"
@@ -142,6 +143,7 @@ export default function FinResCaixaDia() {
                         </select>
                       </div>
                       <div className="col-12 col-lg-3 col-xl-2">
+                        <label className="fw-bold">Mês</label>
                         <select
                           className="form-select form-select-lg mb-3"
                           aria-label=".form-select-lg example"
