@@ -60,7 +60,7 @@ export default function Header() {
         </button>
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
-            <span className="h6 fw-bold text-white">Bem-vindo, {nome}</span>
+            <span className="h5 fw-bold text-white">Bem-vindo, {nome}</span>
           </div>
         </form>
 
