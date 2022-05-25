@@ -74,7 +74,7 @@ export default function SecAprovReprov() {
         {
           label: "userGain",
           data: [totalAprov, totalReprov],
-          backgroundColor: ["#0000ff", "#FF0000"],
+          backgroundColor: ["#58a6ff", "#f67573"],
         },
       ],
     });
@@ -143,8 +143,8 @@ export default function SecAprovReprov() {
                     </div>
                     <div className="col-md-4 col-xl-7">
                       <div
-                        className="card order-card altura-card"
-                        style={{ backgroundColor: "#0000ff" }}
+                        className="card order-card"
+                        style={{ backgroundColor: "#58a6ff" }}
                       >
                         <div className="card-block">
                           <h5 className="m-b-20 fw-bold text-center">
@@ -157,8 +157,8 @@ export default function SecAprovReprov() {
                         </div>
                       </div>
                       <div
-                        className="card order-card altura-card"
-                        style={{ backgroundColor: "#FF0000" }}
+                        className="card order-card"
+                        style={{ backgroundColor: "#f67573" }}
                       >
                         <div className="card-block">
                           <h5 className="m-b-20 fw-bold text-center">
