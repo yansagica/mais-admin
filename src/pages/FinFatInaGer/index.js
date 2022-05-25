@@ -161,12 +161,12 @@ export default function FinFatInaGer() {
     const totalAvencer = totalFat - totalRec - totalDeb;
 
     setFaturamento({
-      labels: ["Faturamento", "Recebido", "A vencer", "Inadimplência"],
+      labels: ["Recebido", "A vencer", "Inadimplência"],
       datasets: [
         {
           label: "userGain",
-          data: [totalFat, totalRec, totalAvencer, totalDeb],
-          backgroundColor: ["#58a6ff", "#20b2aa", "#eda044", "#FF0000"],
+          data: [totalRec, totalAvencer, totalDeb],
+          backgroundColor: ["#20b2aa", "#eda044", "#FF0000"],
         },
       ],
     });
