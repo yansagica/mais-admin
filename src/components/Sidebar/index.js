@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FcBullish, FcInspection, FcStatistics } from "react-icons/fc";
+import {
+  FcBullish,
+  FcInspection,
+  FcStatistics,
+  FcServices,
+} from "react-icons/fc";
 import api from "../../servicos/api";
 import { getToken } from "../../servicos/auth";
 import jwt_decode from "jwt-decode";
@@ -9,6 +14,11 @@ import "./Sidebar.css";
 export default function Sidebar() {
   const [ultimaAtu, setUltimaAtu] = useState([]);
   const [logo, setLogo] = useState([]);
+
+  useEffect(() => {
+    getUltAtu();
+    getLogo();
+  }, []);
 
   const chave = jwt_decode(getToken());
   const id = chave.userId;
@@ -25,11 +35,6 @@ export default function Sidebar() {
     const dados = resp.data.img;
     setLogo(dados);
   };
-
-  useEffect(() => {
-    getUltAtu();
-    getLogo();
-  }, []);
 
   return (
     <>
@@ -54,6 +59,13 @@ export default function Sidebar() {
               <small className="texto-pequeno text-dark">{ultimaAtu}</small>
             </div>
             <hr className="text-dark" />
+
+            {/* <Link className="nav-link fw-bold" to="/dashboard">
+              <div className="sb-nav-link-icon">
+                <FcServices size={20} />
+              </div>
+              Configurações
+            </Link> */}
 
             <Link className="nav-link fw-bold" to="/dashboard">
               <div className="sb-nav-link-icon">
