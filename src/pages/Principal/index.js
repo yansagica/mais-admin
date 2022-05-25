@@ -117,7 +117,7 @@ export default function Principal() {
     const totalApa12 = allData.reduce((total, item) => total + item.apa12, 0);
 
     setUserData({
-      labels: ["Recebidos", "Vencidos"],
+      labels: ["Recebido", "Vencido"],
       datasets: [
         {
           label: "userGain",
@@ -185,7 +185,7 @@ export default function Principal() {
               totalRec11 +
               totalRec12,
           ],
-          backgroundColor: ["#FF7F50", "#20B2AA"],
+          backgroundColor: ["#58a6ff", "#20B2AA"],
         },
       ],
     });
@@ -381,7 +381,7 @@ export default function Principal() {
                     </div>
 
                     <div className="col-md-4 col-xl-3">
-                      <h5 className="fw-bold">Receitas x Despesas</h5>
+                      <h5 className="fw-bold">Faturamento x Despesas</h5>
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
                           {faturamento && <Pizza chartData={faturamento} />}

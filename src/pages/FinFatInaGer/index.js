@@ -6,13 +6,18 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import api from "../../servicos/api";
 import { getCnpj } from "../../servicos/auth";
+import { frasePeriodo } from "../../Funcoes";
+import "./style.css";
 
 export default function FinFatInaGer() {
   const [faturamento, setFaturamento] = useState(null);
   const [faturaCard, setFaturaCard] = useState(0.0);
+  const [recebidoCard, setRecebidoCard] = useState(0.0);
+  const [aVencerCard, setaVencerCard] = useState(0.0);
   const [inadim, setInadim] = useState(0.0);
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
+  const [frase, setFrase] = useState("");
 
   const cnpj = getCnpj();
 
@@ -42,6 +47,9 @@ export default function FinFatInaGer() {
     const response = await api.get(url);
     const allData = response.data;
 
+    const data = new Date();
+    const mes = data.getMonth();
+
     // FATURAMENTO
 
     const totalFat01 = allData.reduce((total, item) => total + item.fat01, 0);
@@ -56,6 +64,63 @@ export default function FinFatInaGer() {
     const totalFat10 = allData.reduce((total, item) => total + item.fat10, 0);
     const totalFat11 = allData.reduce((total, item) => total + item.fat11, 0);
     const totalFat12 = allData.reduce((total, item) => total + item.fat12, 0);
+
+    const arrayFatMes = [
+      totalFat01,
+      totalFat02,
+      totalFat03,
+      totalFat04,
+      totalFat05,
+      totalFat06,
+      totalFat07,
+      totalFat08,
+      totalFat09,
+      totalFat10,
+      totalFat11,
+      totalFat12,
+    ];
+
+    var totalFat = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalFat = totalFat + arrayFatMes[i];
+    }
+
+    // RECEBIDO
+
+    const totalRec01 = allData.reduce((total, item) => total + item.rec01, 0);
+    const totalRec02 = allData.reduce((total, item) => total + item.rec02, 0);
+    const totalRec03 = allData.reduce((total, item) => total + item.rec03, 0);
+    const totalRec04 = allData.reduce((total, item) => total + item.rec04, 0);
+    const totalRec05 = allData.reduce((total, item) => total + item.rec05, 0);
+    const totalRec06 = allData.reduce((total, item) => total + item.rec06, 0);
+    const totalRec07 = allData.reduce((total, item) => total + item.rec07, 0);
+    const totalRec08 = allData.reduce((total, item) => total + item.rec08, 0);
+    const totalRec09 = allData.reduce((total, item) => total + item.rec09, 0);
+    const totalRec10 = allData.reduce((total, item) => total + item.rec10, 0);
+    const totalRec11 = allData.reduce((total, item) => total + item.rec11, 0);
+    const totalRec12 = allData.reduce((total, item) => total + item.rec12, 0);
+
+    const arrayRecMes = [
+      totalRec01,
+      totalRec02,
+      totalRec03,
+      totalRec04,
+      totalRec05,
+      totalRec06,
+      totalRec07,
+      totalRec08,
+      totalRec09,
+      totalRec10,
+      totalRec11,
+      totalRec12,
+    ];
+
+    var totalRec = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalRec = totalRec + arrayRecMes[i];
+    }
 
     // VENCIDOS
 
@@ -72,72 +137,45 @@ export default function FinFatInaGer() {
     const totalDeb11 = allData.reduce((total, item) => total + item.deb11, 0);
     const totalDeb12 = allData.reduce((total, item) => total + item.deb12, 0);
 
+    const arrayDebMes = [
+      totalDeb01,
+      totalDeb02,
+      totalDeb03,
+      totalDeb04,
+      totalDeb05,
+      totalDeb06,
+      totalDeb07,
+      totalDeb08,
+      totalDeb09,
+      totalDeb10,
+      totalDeb11,
+      totalDeb12,
+    ];
+
+    var totalDeb = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalDeb = totalDeb + arrayDebMes[i];
+    }
+
+    const totalAvencer = totalFat - totalRec - totalDeb;
+
     setFaturamento({
-      labels: ["Faturamento", "Inadimplência"],
+      labels: ["Faturamento", "Recebido", "A vencer", "Inadimplência"],
       datasets: [
         {
           label: "userGain",
-          data: [
-            totalFat01 +
-              totalFat02 +
-              totalFat03 +
-              totalFat04 +
-              totalFat05 +
-              totalFat06 +
-              totalFat07 +
-              totalFat08 +
-              totalFat09 +
-              totalFat10 +
-              totalFat11 +
-              totalFat12,
-
-            totalDeb01 +
-              totalDeb02 +
-              totalDeb03 +
-              totalDeb04 +
-              totalDeb05 +
-              totalDeb06 +
-              totalDeb07 +
-              totalDeb08 +
-              totalDeb09 +
-              totalDeb10 +
-              totalDeb11 +
-              totalDeb12,
-          ],
-          backgroundColor: ["rgba(75,192,192,1)", "#FF0000"],
+          data: [totalFat, totalRec, totalAvencer, totalDeb],
+          backgroundColor: ["#58a6ff", "#20b2aa", "#eda044", "#FF0000"],
         },
       ],
     });
 
-    setFaturaCard(
-      totalFat01 +
-        totalFat02 +
-        totalFat03 +
-        totalFat04 +
-        totalFat05 +
-        totalFat06 +
-        totalFat07 +
-        totalFat08 +
-        totalFat09 +
-        totalFat10 +
-        totalFat11 +
-        totalFat12
-    );
-
-    setInadim(
-      totalDeb01 +
-        totalDeb02 +
-        totalDeb03 +
-        totalDeb04 +
-        totalDeb05 +
-        totalDeb06 +
-        totalDeb07 +
-        totalDeb08 +
-        totalDeb09 +
-        totalDeb10 +
-        totalDeb11 +
-        totalDeb12
-    );
+    setFaturaCard(totalFat);
+    setRecebidoCard(totalRec);
+    setaVencerCard(totalAvencer);
+    setInadim(totalDeb);
+    setFrase(frasePeriodo(mes));
   };
 
   return (
@@ -152,12 +190,14 @@ export default function FinFatInaGer() {
             <main>
               <div className="container-fluid px-4">
                 <h3 className="mt-4 mb-4 fw-bold texto-roxo">
-                  Faturamento x Inadimplência(Geral)
+                  Faturamento x Inadimplência (Geral)
                 </h3>
                 <hr />
+
                 <div className="container">
                   <div className="row">
                     <div className="col-xs-12 col-xl-2">
+                      <label className="fw-bold">Ano/período</label>
                       <select
                         className="form-select form-select-lg mb-3"
                         aria-label="form-select-lg example"
@@ -172,6 +212,7 @@ export default function FinFatInaGer() {
                         ))}
                       </select>
                     </div>
+                    <div className="mb-2">{frase}</div>
                   </div>
                   <div className="row">
                     <div className="col-md-4 col-xl-5">
@@ -184,11 +225,12 @@ export default function FinFatInaGer() {
                     </div>
                     <div className="col-md-4 col-xl-7">
                       {/* <h5 classNameName="fw-bold">Valores</h5> */}
-                      <div className="card bg-c-green order-card altura-card">
-                        <div className="card-block">
-                          <h5 className="m-b-20 fw-bold text-center">
-                            Faturamento
-                          </h5>
+                      <div
+                        style={{ backgroundColor: "#58a6ff" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Faturamento</h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
@@ -200,11 +242,45 @@ export default function FinFatInaGer() {
                           </div>
                         </div>
                       </div>
-                      <div className="card bg-c-red order-card altura-card">
-                        <div className="card-block">
-                          <h5 className="m-b-20 fw-bold text-center">
-                            Inadimplência
-                          </h5>
+                      <div
+                        style={{ backgroundColor: "#20b2aa" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Recebido</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {recebidoCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        style={{ backgroundColor: "#eda044" }}
+                        className="card order-card mb-3"
+                      >
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">A vencer</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h1 fw-bold">
+                              {aVencerCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card bg-c-red order-card mb-3">
+                        <div className="p-2">
+                          <h5 className="fw-bold text-center">Inadimplência</h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <HiOutlineTrendingDown size="55px" /> */}
                             <span className="h1 fw-bold">
