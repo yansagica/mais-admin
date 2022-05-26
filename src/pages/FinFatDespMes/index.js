@@ -387,7 +387,7 @@ export default function FinFatDespMes() {
         labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "Exibir Gráfico",
+            label: "Valor Total",
             data: [totalFat, totalRec, totalApagar],
             backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
@@ -471,7 +471,7 @@ export default function FinFatDespMes() {
                       >
                         <div className="p-2">
                           <h5 className="m-b-20 fw-bold text-center">
-                            Faturamento (Sem desconto)
+                            Faturamento (Com desconto)
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}

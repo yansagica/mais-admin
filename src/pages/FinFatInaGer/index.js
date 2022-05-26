@@ -165,7 +165,7 @@ export default function FinFatInaGer() {
       labels: ["Faturamento", "Recebido", "Inadimplência"],
       datasets: [
         {
-          label: "Exibir Gráfico",
+          label: "Valor Total",
           data: [totalFat, totalRec, totalDeb],
           backgroundColor: ["#58a6ff", "#20b2aa", "#FF0000"],
         },
@@ -232,7 +232,7 @@ export default function FinFatInaGer() {
                       >
                         <div className="p-2">
                           <h5 className="fw-bold text-center">
-                            Faturamento (Sem desconto)
+                            Faturamento (Com desconto)
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}

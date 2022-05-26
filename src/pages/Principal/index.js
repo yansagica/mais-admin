@@ -414,7 +414,7 @@ export default function Principal() {
                       >
                         <div className="p-2">
                           <h6 className="fw-bold text-center">
-                            Faturamento (Sem desconto)
+                            Faturamento (Com desconto)
                           </h6>
                           <div className="d-flex align-items-center justify-content-around">
                             <span className="h3 fw-bold">
