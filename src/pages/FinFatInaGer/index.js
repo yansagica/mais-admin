@@ -8,6 +8,7 @@ import api from "../../servicos/api";
 import { getCnpj } from "../../servicos/auth";
 import { frasePeriodo } from "../../Funcoes";
 import "./style.css";
+import Barra from "../../components/Graficos/Barra";
 
 export default function FinFatInaGer() {
   const [faturamento, setFaturamento] = useState(null);
@@ -161,12 +162,12 @@ export default function FinFatInaGer() {
     const totalAvencer = totalFat - totalRec - totalDeb;
 
     setFaturamento({
-      labels: ["Recebido", "A vencer", "Inadimplência"],
+      labels: ["Faturamento", "Recebido", "Inadimplência"],
       datasets: [
         {
-          label: "userGain",
-          data: [totalRec, totalAvencer, totalDeb],
-          backgroundColor: ["#20b2aa", "#eda044", "#FF0000"],
+          label: "Exibir Gráfico",
+          data: [totalFat, totalRec, totalDeb],
+          backgroundColor: ["#58a6ff", "#20b2aa", "#FF0000"],
         },
       ],
     });
@@ -219,7 +220,7 @@ export default function FinFatInaGer() {
                       {/* <h5 className="fw-bold">Faturamento x Inadimplência</h5> */}
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
-                          {faturamento && <Pizza chartData={faturamento} />}
+                          {faturamento && <Barra chartData={faturamento} />}
                         </div>
                       </div>
                     </div>
@@ -230,7 +231,9 @@ export default function FinFatInaGer() {
                         className="card order-card mb-3"
                       >
                         <div className="p-2">
-                          <h5 className="fw-bold text-center">Faturamento</h5>
+                          <h5 className="fw-bold text-center">
+                            Faturamento (Sem desconto)
+                          </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
@@ -252,24 +255,6 @@ export default function FinFatInaGer() {
                             {/* <BsCurrencyDollar size="55px" /> */}
                             <span className="h1 fw-bold">
                               {recebidoCard.toLocaleString("pt-BR", {
-                                style: "currency",
-                                currency: "BRL",
-                              })}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        style={{ backgroundColor: "#eda044" }}
-                        className="card order-card mb-3"
-                      >
-                        <div className="p-2">
-                          <h5 className="fw-bold text-center">A vencer</h5>
-                          <div className="d-flex align-items-center justify-content-around">
-                            {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
-                              {aVencerCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
                               })}

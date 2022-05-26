@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
-import Pizza from "../../components/Graficos/Pizza";
+import Barra from "../../components/Graficos/Barra";
 import "../FinFatDespMes/style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -66,12 +66,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec01);
       setApagarCard(totalApa01);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec01, totalApa01],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat01, totalRec01, totalApa01],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -83,12 +83,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec02);
       setApagarCard(totalApa02);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec02, totalApa02],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat02, totalRec02, totalApa02],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -100,12 +100,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec03);
       setApagarCard(totalApa03);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec03, totalApa03],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat03, totalRec03, totalApa03],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -117,12 +117,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec04);
       setApagarCard(totalApa04);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec04, totalApa04],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat04, totalRec04, totalApa04],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -134,12 +134,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec05);
       setApagarCard(totalApa05);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec05, totalApa05],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat05, totalRec05, totalApa05],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -151,12 +151,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec06);
       setApagarCard(totalApa06);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec06, totalApa06],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat06, totalRec06, totalApa06],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -168,12 +168,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec07);
       setApagarCard(totalApa07);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec07, totalApa07],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat07, totalRec07, totalApa07],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -185,12 +185,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec08);
       setApagarCard(totalApa08);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec08, totalApa08],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat08, totalRec08, totalApa08],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -202,12 +202,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec09);
       setApagarCard(totalApa09);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec09, totalApa09],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat09, totalRec09, totalApa09],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -219,12 +219,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec10);
       setApagarCard(totalApa10);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec10, totalApa10],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat10, totalRec10, totalApa10],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -236,12 +236,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec11);
       setApagarCard(totalApa11);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec11, totalApa11],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat11, totalRec11, totalApa11],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -253,12 +253,12 @@ export default function FinFatDespMes() {
       setRecebidoCard(totalRec12);
       setApagarCard(totalApa12);
       setFaturamento({
-        labels: ["Recebido", "Despesas"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec12, totalApa12],
-            backgroundColor: ["rgba(75,192,192,1)", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat12, totalRec12, totalApa12],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -372,13 +372,24 @@ export default function FinFatDespMes() {
 
       setApagarCard(totalApagar);
 
+      // setFaturamento({
+      //   labels: ["Recebido", "Despesa"],
+      //   datasets: [
+      //     {
+      //       label: "userGain",
+      //       data: [totalRec, totalApagar],
+      //       backgroundColor: ["#20b2aa", "#8257e5"],
+      //     },
+      //   ],
+      // });
+
       setFaturamento({
-        labels: ["Recebido", "Despesa"],
+        labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "userGain",
-            data: [totalRec, totalApagar],
-            backgroundColor: ["#20b2aa", "#8257e5"],
+            label: "Exibir Gráfico",
+            data: [totalFat, totalRec, totalApagar],
+            backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
         ],
       });
@@ -449,7 +460,7 @@ export default function FinFatDespMes() {
                     <div className="col-md-4 col-xl-5">
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
-                          {faturamento && <Pizza chartData={faturamento} />}
+                          {faturamento && <Barra chartData={faturamento} />}
                         </div>
                       </div>
                     </div>
@@ -460,7 +471,7 @@ export default function FinFatDespMes() {
                       >
                         <div className="p-2">
                           <h5 className="m-b-20 fw-bold text-center">
-                            Faturamento
+                            Faturamento (Sem desconto)
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}

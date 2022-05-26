@@ -413,7 +413,9 @@ export default function Principal() {
                         className="card order-card mb-3"
                       >
                         <div className="p-2">
-                          <h6 className="fw-bold text-center">Faturamento</h6>
+                          <h6 className="fw-bold text-center">
+                            Faturamento (Sem desconto)
+                          </h6>
                           <div className="d-flex align-items-center justify-content-around">
                             <span className="h3 fw-bold">
                               {faturamentoCard.toLocaleString("pt-BR", {
