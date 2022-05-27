@@ -5,6 +5,8 @@ import {
   FcInspection,
   FcStatistics,
   FcServices,
+  FcContacts,
+  FcReading,
 } from "react-icons/fc";
 import api from "../../servicos/api";
 import { getToken } from "../../servicos/auth";
@@ -164,6 +166,12 @@ export default function Sidebar() {
                 <a className="nav-link" href="layout-sidenav-light.html"></a>
               </nav>
             </div>
+            <Link className="nav-link fw-bold" to="/bibacervo">
+              <div className="sb-nav-link-icon">
+                <FcReading size={20} />
+              </div>
+              Biblioteca
+            </Link>
           </div>
         </div>
       </nav>

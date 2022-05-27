@@ -15,6 +15,7 @@ import FinResCaixaDia from "./pages/FinResCaixaDia";
 import FinResCaixaDiaForpag from "./pages/FinResCaixaDiaForpag";
 import { Login } from "./pages/Login";
 import FinApaMesDia from "./pages/FinApaMesDia";
+import Biblioteca from "./pages/Biblioteca";
 // import Dashboard from "./pages/Dashboard";
 // import Header from "./components/Header";
 // import Sidebar from "./components/Sidebar";
@@ -41,6 +42,7 @@ const Rotas = () => {
           path="/finrescaixadiaforpag"
           element={<FinResCaixaDiaForpag />}
         />
+        <Route path="/bibacervo" element={<Biblioteca />} />
       </Routes>
     </BrowserRouter>
   );
