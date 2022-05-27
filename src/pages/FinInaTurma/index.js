@@ -178,22 +178,56 @@ export default function FinInaTurma() {
       totalDeb = totalDeb + arrayDebMes[i];
     }
 
-    const totalAvencer = totalFat - totalRec - totalDeb;
+    // A VENCER
+
+    const totalAve01 = allData.reduce((total, item) => total + item.ave01, 0);
+    const totalAve02 = allData.reduce((total, item) => total + item.ave02, 0);
+    const totalAve03 = allData.reduce((total, item) => total + item.ave03, 0);
+    const totalAve04 = allData.reduce((total, item) => total + item.ave04, 0);
+    const totalAve05 = allData.reduce((total, item) => total + item.ave05, 0);
+    const totalAve06 = allData.reduce((total, item) => total + item.ave06, 0);
+    const totalAve07 = allData.reduce((total, item) => total + item.ave07, 0);
+    const totalAve08 = allData.reduce((total, item) => total + item.ave08, 0);
+    const totalAve09 = allData.reduce((total, item) => total + item.ave09, 0);
+    const totalAve10 = allData.reduce((total, item) => total + item.ave10, 0);
+    const totalAve11 = allData.reduce((total, item) => total + item.ave11, 0);
+    const totalAve12 = allData.reduce((total, item) => total + item.ave12, 0);
+
+    const arrayAveMes = [
+      totalAve01,
+      totalAve02,
+      totalAve03,
+      totalAve04,
+      totalAve05,
+      totalAve06,
+      totalAve07,
+      totalAve08,
+      totalAve09,
+      totalAve10,
+      totalAve11,
+      totalAve12,
+    ];
+
+    var totalAve = 0;
+
+    for (let i = 0; i <= mes; i++) {
+      totalAve = totalAve + arrayAveMes[i];
+    }
 
     setFaturamento({
-      labels: ["Faturamento", "Recebido", "Inadimplência"],
+      labels: ["Faturamento", "Recebido", "A vencer", "Inadimplência"],
       datasets: [
         {
-          label: "Valor Total",
-          data: [totalFat, totalRec, totalDeb],
-          backgroundColor: ["#58a6ff", "#20b2aa", "#FF0000"],
+          label: "Valor",
+          data: [totalFat, totalRec, totalAve, totalDeb],
+          backgroundColor: ["#58a6ff", "#20b2aa", "#eda044", "#FF0000"],
         },
       ],
     });
 
     setFaturaCard(totalFat);
     setRecebidoCard(totalRec);
-    setaVencerCard(totalAvencer);
+    setaVencerCard(totalAve);
     setInadim(totalDeb);
     setFrase(frasePeriodo(mes));
   };
@@ -249,8 +283,8 @@ export default function FinInaTurma() {
                     </div>
                     <div className="mb-2">{frase}</div>
                   </div>
-                  <div className="row">
-                    <div className="col-md-4 col-xl-5">
+                  <div className="row flex justify-content-between align-items-center">
+                    <div className="col-md-4 col-xl-6">
                       {/* <h5 className="fw-bold">Faturamento x Inadimplência</h5> */}
                       <div className="card bg-c-light order-card">
                         <div className="card-block">
@@ -258,19 +292,19 @@ export default function FinInaTurma() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4 col-xl-7">
-                      {/* <h5 classNameName="fw-bold">Valores</h5> */}
+
+                    <div className="col-md-4 col-xl-6">
                       <div
                         style={{ backgroundColor: "#58a6ff" }}
-                        className="card order-card mb-3"
+                        className="card order-card mb-2"
                       >
-                        <div className="p-2">
+                        <div className="p-1">
                           <h5 className="fw-bold text-center">
                             Faturamento (Com desconto)
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {faturaCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -281,13 +315,13 @@ export default function FinInaTurma() {
                       </div>
                       <div
                         style={{ backgroundColor: "#20b2aa" }}
-                        className="card order-card mb-3"
+                        className="card order-card mb-2"
                       >
-                        <div className="p-2">
+                        <div className="p-1">
                           <h5 className="fw-bold text-center">Recebido</h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {recebidoCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -297,12 +331,30 @@ export default function FinInaTurma() {
                         </div>
                       </div>
 
-                      <div className="card bg-c-red order-card mb-3">
-                        <div className="p-2">
+                      <div
+                        style={{ backgroundColor: "#f09c0c" }}
+                        className="card order-card mb-2"
+                      >
+                        <div className="p-1">
+                          <h5 className="fw-bold text-center">A vencer</h5>
+                          <div className="d-flex align-items-center justify-content-around">
+                            {/* <BsCurrencyDollar size="55px" /> */}
+                            <span className="h4 fw-bold">
+                              {aVencerCard.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                              })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card bg-c-red order-card">
+                        <div className="p-1">
                           <h5 className="fw-bold text-center">Inadimplência</h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <HiOutlineTrendingDown size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {inadim.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",

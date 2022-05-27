@@ -370,11 +370,13 @@ export default function FinFatDespMes() {
         totalApagar = totalApagar + arrayApaMes[i];
       }
 
+      setApagarCard(totalApagar);
+
       setFaturamento({
         labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [
           {
-            label: "Valor Total",
+            label: "Valor",
             data: [totalFat, totalRec, totalApagar],
             backgroundColor: ["#58a6ff", "#20b2aa", "#8257e5"],
           },
@@ -462,7 +464,7 @@ export default function FinFatDespMes() {
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {faturaCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -482,7 +484,7 @@ export default function FinFatDespMes() {
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <BsCurrencyDollar size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {recebidoCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -502,7 +504,7 @@ export default function FinFatDespMes() {
                           </h5>
                           <div className="d-flex align-items-center justify-content-around">
                             {/* <HiOutlineTrendingDown size="55px" /> */}
-                            <span className="h1 fw-bold">
+                            <span className="h4 fw-bold">
                               {apagarCard.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
