@@ -370,19 +370,6 @@ export default function FinFatDespMes() {
         totalApagar = totalApagar + arrayApaMes[i];
       }
 
-      setApagarCard(totalApagar);
-
-      // setFaturamento({
-      //   labels: ["Recebido", "Despesa"],
-      //   datasets: [
-      //     {
-      //       label: "userGain",
-      //       data: [totalRec, totalApagar],
-      //       backgroundColor: ["#20b2aa", "#8257e5"],
-      //     },
-      //   ],
-      // });
-
       setFaturamento({
         labels: ["Faturamento", "Recebido", "Despesas"],
         datasets: [

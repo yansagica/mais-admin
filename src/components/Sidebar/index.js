@@ -153,6 +153,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/finrescaixadia">
                   Resumo Caixa por Mês/Dia
                 </Link>
+                <Link className="nav-link" to="/finapagardia">
+                  Pagamentos Efetuados Mês/Dia
+                </Link>
                 {/* <Link className="nav-link" to="/finrescaixadiaforpag">
                   Resumo Caixa por dia x Forma de Pagamento (Últimos 30 dias)
                 </Link> */}

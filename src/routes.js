@@ -14,6 +14,7 @@ import FinInaTurma from "./pages/FinInaTurma";
 import FinResCaixaDia from "./pages/FinResCaixaDia";
 import FinResCaixaDiaForpag from "./pages/FinResCaixaDiaForpag";
 import { Login } from "./pages/Login";
+import FinApaMesDia from "./pages/FinApaMesDia";
 // import Dashboard from "./pages/Dashboard";
 // import Header from "./components/Header";
 // import Sidebar from "./components/Sidebar";
@@ -35,6 +36,7 @@ const Rotas = () => {
         <Route path="/finfatdia" element={<FinFatDia />} />
         <Route path="/fininaturma" element={<FinInaTurma />} />
         <Route path="/finrescaixadia" element={<FinResCaixaDia />} />
+        <Route path="/finapagardia" element={<FinApaMesDia />} />
         <Route
           path="/finrescaixadiaforpag"
           element={<FinResCaixaDiaForpag />}

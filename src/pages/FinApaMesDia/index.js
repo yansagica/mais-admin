@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import Footer from "../../components/Footer";
-import "../FinResCaixaDia/style.css";
+import "../FinApaMesDia/style.css";
 import api from "../../servicos/api";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import { getCnpj } from "../../servicos/auth";
 
-export default function FinResCaixaDia() {
+export default function FinApaMesDia() {
   const [anoPeriodo, setAnoPeriodo] = useState("");
   const [periodos, setPeriodos] = useState([]);
   const [mes, setMes] = useState("");
@@ -50,28 +50,26 @@ export default function FinResCaixaDia() {
 
   useEffect(() => {
     if (anoPeriodo.length > 0) {
-      getResCaixaMesDia();
+      getFinApaMesDia();
     }
   }, [anoPeriodo]);
 
   useEffect(() => {
     if (mes.length > 0) {
-      getResCaixaMesDia();
+      getFinApaMesDia();
     }
   }, [mes]);
 
   const getTodosPeriodos = async () => {
-    const response = await api.get(`recdia/periodos/${cnpj}`);
+    const response = await api.get(`apadia/periodos/${cnpj}`);
     setPeriodos(response.data);
   };
 
-  const getResCaixaMesDia = async () => {
-    const periodo = anoPeriodo.split("/");
+  const getFinApaMesDia = async () => {
+    // const periodo = anoPeriodo.split("/");
 
     if (mes.length > 0) {
-      const response = await api.get(
-        `recdia/${cnpj}/${periodo[0]}/${periodo[1]}/${mes}`
-      );
+      const response = await api.get(`apadia/${cnpj}/${anoPeriodo}/${mes}`);
       const allData = response.data;
 
       setDia1(allData.dia01);
@@ -120,7 +118,7 @@ export default function FinResCaixaDia() {
             <main>
               <div className="container-fluid px-4">
                 <h3 className="mt-4 mb-4 fw-bold texto-roxo">
-                  Resumo de Caixa por Mês/Dia
+                  Pagamentos Efetuados Mês/Dia
                 </h3>
 
                 <hr />
@@ -128,7 +126,7 @@ export default function FinResCaixaDia() {
                   <div className="row">
                     <div className="row">
                       <div className="col-12 col-lg-3 col-xl-2">
-                        <label className="fw-bold">Ano/período</label>
+                        <label className="fw-bold">Ano</label>
                         <select
                           className="form-select form-select-lg mb-3"
                           aria-label="form-select-lg example"
@@ -137,8 +135,8 @@ export default function FinResCaixaDia() {
                         >
                           <option value="">...</option>
                           {periodos.map((p, index) => (
-                            <option key={index} value={p.ano + "/" + p.seqano}>
-                              {p.ano}/{p.seqano}
+                            <option key={index} value={p.ano}>
+                              {p.ano}
                             </option>
                           ))}
                         </select>
@@ -166,11 +164,6 @@ export default function FinResCaixaDia() {
                           <option value="12">Dezembro</option>
                         </select>
                       </div>
-
-                      <label className="fw-bold mb-3 small">
-                        * Os valores apresentados representam a soma de
-                        mensalidades e outros recebimentos.
-                      </label>
                     </div>
 
                     <div className="col-md-4 col-xl-2">
@@ -179,7 +172,7 @@ export default function FinResCaixaDia() {
                           dia1 < 0
                             ? "card bg-c-red order-card"
                             : dia1 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -204,7 +197,7 @@ export default function FinResCaixaDia() {
                           dia2 < 0
                             ? "card bg-c-red order-card"
                             : dia2 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -229,7 +222,7 @@ export default function FinResCaixaDia() {
                           dia3 < 0
                             ? "card bg-c-red order-card"
                             : dia3 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -253,7 +246,7 @@ export default function FinResCaixaDia() {
                           dia4 < 0
                             ? "card bg-c-red order-card"
                             : dia4 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -277,7 +270,7 @@ export default function FinResCaixaDia() {
                           dia5 < 0
                             ? "card bg-c-red order-card"
                             : dia5 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -301,7 +294,7 @@ export default function FinResCaixaDia() {
                           dia6 < 0
                             ? "card bg-c-red order-card"
                             : dia6 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -325,7 +318,7 @@ export default function FinResCaixaDia() {
                           dia7 < 0
                             ? "card bg-c-red order-card"
                             : dia7 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -349,7 +342,7 @@ export default function FinResCaixaDia() {
                           dia8 < 0
                             ? "card bg-c-red order-card"
                             : dia8 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -373,7 +366,7 @@ export default function FinResCaixaDia() {
                           dia9 < 0
                             ? "card bg-c-red order-card"
                             : dia9 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -397,7 +390,7 @@ export default function FinResCaixaDia() {
                           dia10 < 0
                             ? "card bg-c-red order-card"
                             : dia10 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -421,7 +414,7 @@ export default function FinResCaixaDia() {
                           dia11 < 0
                             ? "card bg-c-red order-card"
                             : dia11 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -445,7 +438,7 @@ export default function FinResCaixaDia() {
                           dia12 < 0
                             ? "card bg-c-red order-card"
                             : dia12 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -469,7 +462,7 @@ export default function FinResCaixaDia() {
                           dia13 < 0
                             ? "card bg-c-red order-card"
                             : dia13 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -493,7 +486,7 @@ export default function FinResCaixaDia() {
                           dia14 < 0
                             ? "card bg-c-red order-card"
                             : dia14 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -517,7 +510,7 @@ export default function FinResCaixaDia() {
                           dia15 < 0
                             ? "card bg-c-red order-card"
                             : dia15 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -541,7 +534,7 @@ export default function FinResCaixaDia() {
                           dia16 < 0
                             ? "card bg-c-red order-card"
                             : dia16 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -565,7 +558,7 @@ export default function FinResCaixaDia() {
                           dia17 < 0
                             ? "card bg-c-red order-card"
                             : dia17 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -589,7 +582,7 @@ export default function FinResCaixaDia() {
                           dia18 < 0
                             ? "card bg-c-red order-card"
                             : dia18 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -613,7 +606,7 @@ export default function FinResCaixaDia() {
                           dia19 < 0
                             ? "card bg-c-red order-card"
                             : dia19 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -637,7 +630,7 @@ export default function FinResCaixaDia() {
                           dia20 < 0
                             ? "card bg-c-red order-card"
                             : dia20 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -661,7 +654,7 @@ export default function FinResCaixaDia() {
                           dia21 < 0
                             ? "card bg-c-red order-card"
                             : dia21 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -685,7 +678,7 @@ export default function FinResCaixaDia() {
                           dia22 < 0
                             ? "card bg-c-red order-card"
                             : dia22 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -709,7 +702,7 @@ export default function FinResCaixaDia() {
                           dia23 < 0
                             ? "card bg-c-red order-card"
                             : dia23 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -733,7 +726,7 @@ export default function FinResCaixaDia() {
                           dia24 < 0
                             ? "card bg-c-red order-card"
                             : dia24 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -757,7 +750,7 @@ export default function FinResCaixaDia() {
                           dia25 < 0
                             ? "card bg-c-red order-card"
                             : dia25 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -781,7 +774,7 @@ export default function FinResCaixaDia() {
                           dia26 < 0
                             ? "card bg-c-red order-card"
                             : dia26 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -805,7 +798,7 @@ export default function FinResCaixaDia() {
                           dia27 < 0
                             ? "card bg-c-red order-card"
                             : dia27 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -829,7 +822,7 @@ export default function FinResCaixaDia() {
                           dia28 < 0
                             ? "card bg-c-red order-card"
                             : dia28 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -853,7 +846,7 @@ export default function FinResCaixaDia() {
                           dia29 < 0
                             ? "card bg-c-red order-card"
                             : dia29 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -877,7 +870,7 @@ export default function FinResCaixaDia() {
                           dia30 < 0
                             ? "card bg-c-red order-card"
                             : dia30 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
@@ -901,7 +894,7 @@ export default function FinResCaixaDia() {
                           dia31 < 0
                             ? "card bg-c-red order-card"
                             : dia31 > 0
-                            ? "card bg-c-green order-card"
+                            ? "card bg-c-red order-card"
                             : "card bg-c-light text-black order-card"
                         }
                       >
