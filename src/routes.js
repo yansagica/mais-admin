@@ -16,6 +16,8 @@ import FinResCaixaDiaForpag from "./pages/FinResCaixaDiaForpag";
 import { Login } from "./pages/Login";
 import FinApaMesDia from "./pages/FinApaMesDia";
 import Biblioteca from "./pages/Biblioteca";
+import Configuracoes from "./pages/Configuracoes";
+import NotaFiscal from "./pages/NotaFiscal";
 // import Dashboard from "./pages/Dashboard";
 // import Header from "./components/Header";
 // import Sidebar from "./components/Sidebar";
@@ -26,6 +28,7 @@ const Rotas = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Principal />} />
+        <Route path="/configuracoes" element={<Configuracoes />} />
         <Route path="/secevasaocurso" element={<SecEvasaoCurso />} />
         <Route path="/secevasaoturma" element={<SecEvasaoTurma />} />
         <Route path="/secmatcodpag" element={<SecMatCodPag />} />
@@ -43,6 +46,7 @@ const Rotas = () => {
           element={<FinResCaixaDiaForpag />}
         />
         <Route path="/bibacervo" element={<Biblioteca />} />
+        <Route path="/notafiscal" element={<NotaFiscal />} />
       </Routes>
     </BrowserRouter>
   );

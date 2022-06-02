@@ -7,6 +7,7 @@ import {
   FcServices,
   FcContacts,
   FcReading,
+  FcCalculator,
 } from "react-icons/fc";
 import api from "../../servicos/api";
 import { getToken } from "../../servicos/auth";
@@ -62,7 +63,7 @@ export default function Sidebar() {
             </div>
             <hr className="text-dark" />
 
-            {/* <Link className="nav-link fw-bold" to="/dashboard">
+            {/* <Link className="nav-link fw-bold" to="/configuracoes">
               <div className="sb-nav-link-icon">
                 <FcServices size={20} />
               </div>
@@ -171,6 +172,13 @@ export default function Sidebar() {
                 <FcReading size={20} />
               </div>
               Biblioteca
+            </Link>
+
+            <Link className="nav-link fw-bold" to="/notafiscal">
+              <div className="sb-nav-link-icon">
+                <FcCalculator size={20} />
+              </div>
+              Notas Fiscais
             </Link>
           </div>
         </div>
