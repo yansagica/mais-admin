@@ -63,12 +63,12 @@ export default function Sidebar() {
             </div>
             <hr className="text-dark" />
 
-            {/* <Link className="nav-link fw-bold" to="/configuracoes">
+            <Link className="nav-link fw-bold" to="/configuracoes">
               <div className="sb-nav-link-icon">
                 <FcServices size={20} />
               </div>
               Configurações
-            </Link> */}
+            </Link>
 
             <Link className="nav-link fw-bold" to="/dashboard">
               <div className="sb-nav-link-icon">

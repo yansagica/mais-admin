@@ -23,7 +23,7 @@ export default function Principal() {
   const [recebidos, setRecebidos] = useState(0.0);
   const [inadim, setInadim] = useState([0.0]);
   const [listaPeriodos, setListaPeriodos] = useState([]);
-  const [teste, setTeste] = useState("");
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     getTodosPeriodos();
@@ -37,12 +37,17 @@ export default function Principal() {
   const id = chave.userId;
 
   const getTodosPeriodos = async () => {
-    const response = await api.get(`secretaria/periodos/${cnpj}`);
+    const response = await api.get(`anoper/${cnpj}/1`);
     setListaPeriodos(response.data);
+    if (listaPeriodos.length == 0) {
+      setMsg(
+        "Você não possui períodos ativos! Acesse o menu CONFIGURAÇÕES para ativar o(s) período(s) desejado(s)."
+      );
+    }
   };
 
   const salvaAcesso = async () => {
-    const resp = await api.patch(`user/users/${cnpj}/${id}`);
+    await api.patch(`user/users/${cnpj}/${id}`);
   };
 
   const getTotalGeral = async () => {
@@ -310,6 +315,19 @@ export default function Principal() {
                         </div>
                       </div>
                     ))}
+                    {listaPeriodos.length == 0 && (
+                      <div className="col-md-6 col-xl-12">
+                        <div className="order-card">
+                          <div className="card-block">
+                            <div className="d-flex align-items-center justify-content-center">
+                              <span className="h5 fw-bold texto-roxo">
+                                {msg}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <h3 className="mt-4 mb-4 fw-bold text-secondary">

@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode";
 
 function Configuracoes() {
   const [periodos, setPeriodos] = useState([]);
-  const [anoPeriodo, setAnoPeriodo] = useState("");
+  const [idAnoPeriodo, setIdAnoPeriodo] = useState([]);
 
   const cnpj = getCnpj();
   const chave = jwt_decode(getToken());
@@ -19,40 +19,28 @@ function Configuracoes() {
     getTodosPeriodos();
   }, []);
 
-  // useEffect(() => {
-  //   let c = anoPeriodo;
-  //   let res = c.substring(1, 7);
-  //   anoPeriodo = anoPeriodo.replace("deletar", "");
-  //   anoPeriodo = anoPeriodo.replace("gravarr", "");
-
-  //   if (res === "deletar") {
-  //     deleteAnoPeriodo();
-  //   } else {
-  //     gravaAnoPeriodo();
-  //   }
-  // }, [anoPeriodo]);
-
   const getTodosPeriodos = async () => {
-    const response = await api.get(`secretaria/periodos/${cnpj}`);
+    const response = await api.get(`anoper/${cnpj}`);
     setPeriodos(response.data);
   };
 
-  const gravaAnoPeriodo = async () => {
-    const periodo = anoPeriodo.split("/");
-
-    await api.post(`anoper/${codmaisad}`, {
-      codmaisad: codmaisad,
-      ano: periodo[0],
-      seqano: periodo[1],
+  const ativaDesativaAnoPeriodo = async (idAnoPeriodo, ativado) => {
+    await api.patch(`anoper/${idAnoPeriodo}`, {
+      ativado: ativado,
     });
-
-    console.log(periodo[0], periodo[1]);
   };
 
-  const deleteAnoPeriodo = async () => {
-    const periodo = anoPeriodo.split("/");
-    console.log(periodo[0], periodo[2], codmaisad);
-    await api.delete(`anoper/${codmaisad}/${periodo[0]}/${periodo[1]}`);
+  const handleCheck = (id) => {
+    const result = periodos.map((per) => {
+      if (per.id == id) {
+        per.ativado = per.ativado == 1 ? 0 : 1;
+        ativaDesativaAnoPeriodo(id, per.ativado);
+      }
+
+      return per;
+    });
+
+    setPeriodos(result);
   };
 
   return (
@@ -83,16 +71,11 @@ function Configuracoes() {
                                 className="form-check-input sel"
                                 type="checkbox"
                                 id="flexSwitchCheckDefault"
-                                value={anoPeriodo}
-                                onChange={(e) => {
-                                  console.log(e.target.value);
-                                  if (e.target.value == "0") {
-                                    deleteAnoPeriodo();
-                                  } else {
-                                    gravaAnoPeriodo();
-                                  }
-                                }}
+                                value={idAnoPeriodo}
+                                checked={p.ativado == 1}
+                                onChange={() => handleCheck(p.id)}
                               />
+
                               <label
                                 className="form-check-label fw-bold text-white"
                                 htmlFor="flexSwitchCheckDefault"

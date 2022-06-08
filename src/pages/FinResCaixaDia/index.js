@@ -61,7 +61,8 @@ export default function FinResCaixaDia() {
   }, [mes]);
 
   const getTodosPeriodos = async () => {
-    const response = await api.get(`recdia/periodos/${cnpj}`);
+    // const response = await api.get(`recdia/periodos/${cnpj}`);
+    const response = await api.get(`anoper/${cnpj}/1`);
     setPeriodos(response.data);
   };
 

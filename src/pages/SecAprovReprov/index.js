@@ -21,7 +21,8 @@ export default function SecAprovReprov() {
   const cnpj = getCnpj();
 
   const getTodosPeriodos = async () => {
-    const response = await api.get(`secretaria/periodos/${cnpj}`);
+    // const response = await api.get(`secretaria/periodos/${cnpj}`);
+    const response = await api.get(`anoper/${cnpj}/1`);
     setPeriodos(response.data);
   };
 
