@@ -63,13 +63,6 @@ export default function Sidebar() {
             </div>
             <hr className="text-dark" />
 
-            <Link className="nav-link fw-bold" to="/configuracoes">
-              <div className="sb-nav-link-icon">
-                <FcServices size={20} />
-              </div>
-              Configurações
-            </Link>
-
             <Link className="nav-link fw-bold" to="/dashboard">
               <div className="sb-nav-link-icon">
                 <FcStatistics size={20} />
@@ -179,6 +172,15 @@ export default function Sidebar() {
                 <FcCalculator size={20} />
               </div>
               Notas Fiscais
+            </Link>
+
+            <hr className="text-dark" />
+
+            <Link className="nav-link fw-bold" to="/configuracoes">
+              <div className="sb-nav-link-icon">
+                <FcServices size={20} />
+              </div>
+              Configurações
             </Link>
           </div>
         </div>

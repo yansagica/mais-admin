@@ -24,6 +24,7 @@ export default function Principal() {
   const [inadim, setInadim] = useState([0.0]);
   const [listaPeriodos, setListaPeriodos] = useState([]);
   const [msg, setMsg] = useState("");
+  const [periodosAtivos, setPeriodosAtivos] = useState([]);
 
   useEffect(() => {
     getTodosPeriodos();
@@ -38,6 +39,7 @@ export default function Principal() {
 
   const getTodosPeriodos = async () => {
     const response = await api.get(`anoper/${cnpj}/1`);
+
     setListaPeriodos(response.data);
     if (listaPeriodos.length == 0) {
       setMsg(
@@ -51,76 +53,238 @@ export default function Principal() {
   };
 
   const getTotalGeral = async () => {
+    const respPeriodos = await api.get(`anoper/${cnpj}/1`);
+    const allPeriodosAtivos = respPeriodos.data;
+
     const response = await api.get(`secretaria/${cnpj}`);
     const allData = response.data;
 
-    const totalMatric = allData.reduce((total, item) => total + item.qtdmat, 0);
-    const totalFichad = allData.reduce((total, item) => total + item.qtdfic, 0);
-    const totalEvasao = allData.reduce(
+    const filtrandoPeriodos = allData.filter((item) =>
+      allPeriodosAtivos.find(
+        (per) => item.ano == per.ano && item.seqano == per.seqano
+      )
+    );
+
+    const totalMatric = filtrandoPeriodos.reduce(
+      (total, item) => total + item.qtdmat,
+      0
+    );
+    const totalFichad = filtrandoPeriodos.reduce(
+      (total, item) => total + item.qtdfic,
+      0
+    );
+    const totalEvasao = filtrandoPeriodos.reduce(
       (total, item) => total + item.qtdcats,
       0
     );
-    const totalTfa = allData.reduce((total, item) => total + item.qtdtfa, 0);
+    const totalTfa = filtrandoPeriodos.reduce(
+      (total, item) => total + item.qtdtfa,
+      0
+    );
 
     // TOTAL DE RECEBIMENTOS
 
-    const totalRec01 = allData.reduce((total, item) => total + item.rec01, 0);
-    const totalRec02 = allData.reduce((total, item) => total + item.rec02, 0);
-    const totalRec03 = allData.reduce((total, item) => total + item.rec03, 0);
-    const totalRec04 = allData.reduce((total, item) => total + item.rec04, 0);
-    const totalRec05 = allData.reduce((total, item) => total + item.rec05, 0);
-    const totalRec06 = allData.reduce((total, item) => total + item.rec06, 0);
-    const totalRec07 = allData.reduce((total, item) => total + item.rec07, 0);
-    const totalRec08 = allData.reduce((total, item) => total + item.rec08, 0);
-    const totalRec09 = allData.reduce((total, item) => total + item.rec09, 0);
-    const totalRec10 = allData.reduce((total, item) => total + item.rec10, 0);
-    const totalRec11 = allData.reduce((total, item) => total + item.rec11, 0);
-    const totalRec12 = allData.reduce((total, item) => total + item.rec12, 0);
+    const totalRec01 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec01,
+      0
+    );
+    const totalRec02 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec02,
+      0
+    );
+    const totalRec03 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec03,
+      0
+    );
+    const totalRec04 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec04,
+      0
+    );
+    const totalRec05 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec05,
+      0
+    );
+    const totalRec06 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec06,
+      0
+    );
+    const totalRec07 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec07,
+      0
+    );
+    const totalRec08 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec08,
+      0
+    );
+    const totalRec09 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec09,
+      0
+    );
+    const totalRec10 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec10,
+      0
+    );
+    const totalRec11 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec11,
+      0
+    );
+    const totalRec12 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.rec12,
+      0
+    );
 
     // TOTAL DE VENCIDOS
 
-    const totalDeb01 = allData.reduce((total, item) => total + item.deb01, 0);
-    const totalDeb02 = allData.reduce((total, item) => total + item.deb02, 0);
-    const totalDeb03 = allData.reduce((total, item) => total + item.deb03, 0);
-    const totalDeb04 = allData.reduce((total, item) => total + item.deb04, 0);
-    const totalDeb05 = allData.reduce((total, item) => total + item.deb05, 0);
-    const totalDeb06 = allData.reduce((total, item) => total + item.deb06, 0);
-    const totalDeb07 = allData.reduce((total, item) => total + item.deb07, 0);
-    const totalDeb08 = allData.reduce((total, item) => total + item.deb08, 0);
-    const totalDeb09 = allData.reduce((total, item) => total + item.deb09, 0);
-    const totalDeb10 = allData.reduce((total, item) => total + item.deb10, 0);
-    const totalDeb11 = allData.reduce((total, item) => total + item.deb11, 0);
-    const totalDeb12 = allData.reduce((total, item) => total + item.deb12, 0);
+    const totalDeb01 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb01,
+      0
+    );
+    const totalDeb02 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb02,
+      0
+    );
+    const totalDeb03 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb03,
+      0
+    );
+    const totalDeb04 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb04,
+      0
+    );
+    const totalDeb05 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb05,
+      0
+    );
+    const totalDeb06 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb06,
+      0
+    );
+    const totalDeb07 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb07,
+      0
+    );
+    const totalDeb08 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb08,
+      0
+    );
+    const totalDeb09 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb09,
+      0
+    );
+    const totalDeb10 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb10,
+      0
+    );
+    const totalDeb11 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb11,
+      0
+    );
+    const totalDeb12 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.deb12,
+      0
+    );
 
     // TOTAL DE PREVISTOS
 
-    const totalFat01 = allData.reduce((total, item) => total + item.fat01, 0);
-    const totalFat02 = allData.reduce((total, item) => total + item.fat02, 0);
-    const totalFat03 = allData.reduce((total, item) => total + item.fat03, 0);
-    const totalFat04 = allData.reduce((total, item) => total + item.fat04, 0);
-    const totalFat05 = allData.reduce((total, item) => total + item.fat05, 0);
-    const totalFat06 = allData.reduce((total, item) => total + item.fat06, 0);
-    const totalFat07 = allData.reduce((total, item) => total + item.fat07, 0);
-    const totalFat08 = allData.reduce((total, item) => total + item.fat08, 0);
-    const totalFat09 = allData.reduce((total, item) => total + item.fat09, 0);
-    const totalFat10 = allData.reduce((total, item) => total + item.fat10, 0);
-    const totalFat11 = allData.reduce((total, item) => total + item.fat11, 0);
-    const totalFat12 = allData.reduce((total, item) => total + item.fat12, 0);
+    const totalFat01 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat01,
+      0
+    );
+    const totalFat02 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat02,
+      0
+    );
+    const totalFat03 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat03,
+      0
+    );
+    const totalFat04 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat04,
+      0
+    );
+    const totalFat05 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat05,
+      0
+    );
+    const totalFat06 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat06,
+      0
+    );
+    const totalFat07 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat07,
+      0
+    );
+    const totalFat08 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat08,
+      0
+    );
+    const totalFat09 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat09,
+      0
+    );
+    const totalFat10 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat10,
+      0
+    );
+    const totalFat11 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat11,
+      0
+    );
+    const totalFat12 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.fat12,
+      0
+    );
 
     // TOTAL DE A PAGAR
 
-    const totalApa01 = allData.reduce((total, item) => total + item.apa01, 0);
-    const totalApa02 = allData.reduce((total, item) => total + item.apa02, 0);
-    const totalApa03 = allData.reduce((total, item) => total + item.apa03, 0);
-    const totalApa04 = allData.reduce((total, item) => total + item.apa04, 0);
-    const totalApa05 = allData.reduce((total, item) => total + item.apa05, 0);
-    const totalApa06 = allData.reduce((total, item) => total + item.apa06, 0);
-    const totalApa07 = allData.reduce((total, item) => total + item.apa07, 0);
-    const totalApa08 = allData.reduce((total, item) => total + item.apa08, 0);
-    const totalApa09 = allData.reduce((total, item) => total + item.apa09, 0);
-    const totalApa10 = allData.reduce((total, item) => total + item.apa10, 0);
-    const totalApa11 = allData.reduce((total, item) => total + item.apa11, 0);
-    const totalApa12 = allData.reduce((total, item) => total + item.apa12, 0);
+    const totalApa01 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa01,
+      0
+    );
+    const totalApa02 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa02,
+      0
+    );
+    const totalApa03 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa03,
+      0
+    );
+    const totalApa04 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa04,
+      0
+    );
+    const totalApa05 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa05,
+      0
+    );
+    const totalApa06 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa06,
+      0
+    );
+    const totalApa07 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa07,
+      0
+    );
+    const totalApa08 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa08,
+      0
+    );
+    const totalApa09 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa09,
+      0
+    );
+    const totalApa10 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa10,
+      0
+    );
+    const totalApa11 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa11,
+      0
+    );
+    const totalApa12 = filtrandoPeriodos.reduce(
+      (total, item) => total + item.apa12,
+      0
+    );
 
     setUserData({
       labels: ["Recebido", "Vencido"],
