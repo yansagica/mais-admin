@@ -64,10 +64,10 @@ export default function NotaFiscal() {
     if (anoPeriodo.length > 0)
       url = `notafiscal/${cnpj}/${periodo[0]}/${periodo[1]}`;
 
-    if (turma.length > 0)
-      url = `notafiscal/turmas/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}`;
-
     if (mes.length > 0)
+      url = `notafiscal/${cnpj}/${periodo[0]}/${periodo[1]}/${compete}`;
+
+    if (turma.length > 0)
       url = `notafiscal/${cnpj}/${periodo[0]}/${periodo[1]}/${turma}/${compete}`;
 
     const response = await api.get(url);
@@ -139,22 +139,6 @@ export default function NotaFiscal() {
                         ))}
                       </select>
                     </div>
-                    <div className="col-12 col-lg-9 col-xl-4">
-                      <label className="fw-bold">Turma</label>
-                      <select
-                        className="form-select form-select-lg mb-3"
-                        aria-label="form-select-lg example"
-                        value={turma}
-                        onChange={(e) => setTurma(e.target.value)}
-                      >
-                        <option value="">...</option>
-                        {turmas.map((t, index) => (
-                          <option key={index} value={t.turma}>
-                            {t.turma}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
 
                     <div className="col-xs-12 col-xl-2">
                       <label className="fw-bold">Mês</label>
@@ -177,6 +161,23 @@ export default function NotaFiscal() {
                         <option value="10">Outubro</option>
                         <option value="11">Novembro</option>
                         <option value="12">Dezembro</option>
+                      </select>
+                    </div>
+
+                    <div className="col-12 col-lg-9 col-xl-8">
+                      <label className="fw-bold">Turma</label>
+                      <select
+                        className="form-select form-select-lg mb-3"
+                        aria-label="form-select-lg example"
+                        value={turma}
+                        onChange={(e) => setTurma(e.target.value)}
+                      >
+                        <option value="">...</option>
+                        {turmas.map((t, index) => (
+                          <option key={index} value={t.turma}>
+                            {t.turma}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
