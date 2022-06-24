@@ -102,9 +102,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/secaprovreprov">
                   Aprovados/Reprovados
                 </Link>
-                <Link className="nav-link" to="/secsenso">
+                {/* <Link className="nav-link" to="/secsenso">
                   Senso
-                </Link>
+                </Link> */}
               </nav>
             </div>
 
