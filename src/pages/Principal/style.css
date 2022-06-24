@@ -18,6 +18,12 @@ body{
    background: linear-gradient(45deg,#fa9531,#e4aa53);
 }
 
+.bg-c-orange-claro {
+   background-color: #FAD961;
+   background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+
+}
+
 .bg-c-yellow {
    background: linear-gradient(45deg,#FFB64D,#ffcb80);
 }
@@ -36,6 +42,11 @@ body{
 
 .bg-c-roxo {
    background: linear-gradient(45deg,#8257E5, #9b7be6 )
+}
+
+.bg-c-roxo-claro {
+   background-image: linear-gradient( 83.2deg,  rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+
 }
 
 .texto-roxo {
