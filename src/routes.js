@@ -18,6 +18,7 @@ import FinApaMesDia from "./pages/FinApaMesDia";
 import Biblioteca from "./pages/Biblioteca";
 import Configuracoes from "./pages/Configuracoes";
 import NotaFiscal from "./pages/NotaFiscal";
+import SecSenso from "./pages/SecSenso";
 // import Dashboard from "./pages/Dashboard";
 // import Header from "./components/Header";
 // import Sidebar from "./components/Sidebar";
@@ -33,6 +34,7 @@ const Rotas = () => {
         <Route path="/secevasaoturma" element={<SecEvasaoTurma />} />
         <Route path="/secmatcodpag" element={<SecMatCodPag />} />
         <Route path="/secaprovreprov" element={<SecAprovReprov />} />
+        <Route path="/secsenso" element={<SecSenso />} />
         <Route path="/finfatinager" element={<FinFatInaGer />} />
         <Route path="/finfatinacur" element={<FinFatInaCur />} />
         <Route path="/finfatdespmes" element={<FinFatDespMes />} />
