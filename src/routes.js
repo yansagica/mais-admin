@@ -19,9 +19,7 @@ import Biblioteca from "./pages/Biblioteca";
 import Configuracoes from "./pages/Configuracoes";
 import NotaFiscal from "./pages/NotaFiscal";
 import SecSenso from "./pages/SecSenso";
-// import Dashboard from "./pages/Dashboard";
-// import Header from "./components/Header";
-// import Sidebar from "./components/Sidebar";
+import FinDespOrdGrand from "./pages/FinDespOrdGrand";
 
 const Rotas = () => {
   return (
@@ -47,6 +45,7 @@ const Rotas = () => {
           path="/finrescaixadiaforpag"
           element={<FinResCaixaDiaForpag />}
         />
+        <Route path="/findespordgrand" element={<FinDespOrdGrand />} />
         <Route path="/bibacervo" element={<Biblioteca />} />
         <Route path="/notafiscal" element={<NotaFiscal />} />
       </Routes>
