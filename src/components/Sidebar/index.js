@@ -158,6 +158,9 @@ export default function Sidebar() {
                 <Link className="nav-link" to="/findespordgrand">
                   Despesas por Ordem de Grandeza
                 </Link>
+                <Link className="nav-link" to="/finmovfon">
+                  Movimentação x Fontes
+                </Link>
                 {/* <Link className="nav-link" to="/finrescaixadiaforpag">
                   Resumo Caixa por dia x Forma de Pagamento (Últimos 30 dias)
                 </Link> */}

@@ -20,6 +20,7 @@ import Configuracoes from "./pages/Configuracoes";
 import NotaFiscal from "./pages/NotaFiscal";
 import SecSenso from "./pages/SecSenso";
 import FinDespOrdGrand from "./pages/FinDespOrdGrand";
+import FinMovFon from "./pages/FinMovFon";
 
 const Rotas = () => {
   return (
@@ -46,6 +47,7 @@ const Rotas = () => {
           element={<FinResCaixaDiaForpag />}
         />
         <Route path="/findespordgrand" element={<FinDespOrdGrand />} />
+        <Route path="/finmovfon" element={<FinMovFon />} />
         <Route path="/bibacervo" element={<Biblioteca />} />
         <Route path="/notafiscal" element={<NotaFiscal />} />
       </Routes>
